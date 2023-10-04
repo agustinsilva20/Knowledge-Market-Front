@@ -5,7 +5,10 @@ import Dropdown from "../../../Components/Dropdown/Dropdown";
 import Boton from '../../../Components/Boton/Boton';
 
 class InstitucionalView extends Component {
-  
+  buscar_cursos = () => {
+    window.location.replace("/anuncios")
+    
+  }
   render() {
 
     const opciones = [
@@ -24,6 +27,10 @@ class InstitucionalView extends Component {
         <h3>Encontra acá todo lo que buscas</h3>
         <div className='space'></div>
         <Dropdown opciones={opciones} handleChange={this.props.handleSelectChange} />
+        <div className='btn-institucional-buscar'>
+        <Boton text="Buscar profesores"  handleClick = {this.buscar_cursos}/>
+        </div>
+        
         <div className='space'></div>
         <h4>¿Deseas ofrecer tus servicios?</h4>
         <div className='btn-institucional-registro'>
