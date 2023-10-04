@@ -42,7 +42,7 @@ class LoginView extends Component {
             <Boton text="Iniciar Sesion"/>
           </div>
 
-          <h5>¿Sos nuevo? <span>Registrate</span> y publica tus servicios</h5>
+          <h5>¿Sos nuevo? <span><a href="/registro">Registrate</a></span> y publica tus servicios</h5>
           
   
   
