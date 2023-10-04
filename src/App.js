@@ -1,25 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Institucional from './Views/Institucional/Institucional';
+
+import Header from './Components/Header/Header';
+
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+        selectedOption: 'ALL'
+    };
+  }
+
+  handleSelectChange = (event) => {
+    this.setState({ selectedOption: event.target.value });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <Header />
+        </header>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Institucional handleSelectChange={this.handleSelectChange} selectedOption={this.state.selectedOption}/>} />
+            <Route path="/login" element={<Institucional />}  />
+          </Routes>
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;

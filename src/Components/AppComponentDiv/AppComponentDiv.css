@@ -1,0 +1,12 @@
+.AppComponentDiv {
+    background-color: white;
+    width: 100%;
+    border-radius: 95px 95px 0 0;
+    height: 100%;
+    padding-left: 12.5%;
+    padding-right: 12.5%;
+    padding-top: 6%;
+    min-height: 75vh;
+
+
+}	

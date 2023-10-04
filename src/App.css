@@ -1,38 +1,59 @@
-.App {
-  text-align: center;
+:root{
+    --verde: #2ECC71;
+    --verde-oscuro: #27AE60;
+    --gris: #BDC3C7;
+
+    --text-alternative:'Roboto', sans-serif;
+    --text-primary: 'Rokkitt', serif;
+
+
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*{
+    padding: 0;margin: 0;box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.App{
+    background-color: var(--verde);
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h2{
+    color: black;
+    font-family: var(--text-primary);
+    font-weight: 500;
+    text-align: center;
+    font-size: 48px;
 }
 
-.App-link {
-  color: #61dafb;
+h3{
+    color: var(--verde-oscuro);
+    font-family: var(--text-alternative);
+    font-weight: 500;
+    text-align: center;
+    font-size: 35px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h4{
+    color: black;
+    font-family: var(--text-primary);
+    font-weight: 500;
+    text-align: center;
+    font-size: 30px;
+}
+
+h5{
+    color: black;
+    font-family: var(--text-alternative);
+    font-weight: 500;
+    text-align: center;
+    font-size: 16px;
+}
+
+span{
+    color: var(--verde)
 }
