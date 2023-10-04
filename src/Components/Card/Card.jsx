@@ -19,7 +19,7 @@ class Card extends Component {
                 <h4>${this.props.curso.precio}</h4>
             </div>
           </div>
-
+         <div className='vermas'>VER MAS</div>
       </div>
     );
   }

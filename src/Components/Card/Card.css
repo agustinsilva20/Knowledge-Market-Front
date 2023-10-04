@@ -1,6 +1,5 @@
 .card{
     width: 30%;
-    height: 500px;
     background-color: rgba(202,202,202,.17);
     margin-bottom: 30px;
 
@@ -27,4 +26,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.vermas{
+    width: 100%;
+    background-color: var(--verde);
+    color: white;
+    font-family: var(--text-alternative); text-align: center;font-size: 14px; padding: 0.5em; font-weight: bold; cursor: pointer;
 }

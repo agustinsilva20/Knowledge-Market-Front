@@ -19,6 +19,9 @@ class App extends Component {
     super(props);
     this.state = {
         selectedOption: 'ALL',
+        selectedTipo: 'ALL',
+        selectedFrecuencia: 'ALL',
+        selectedCalificacion: 'ALL',
         cursos:[
           { categoria: 'Musica', profesor: 'Juan Carlos', calificacion: 4.5, frecuencia: "3 Veces por semanal", tipo: "Presencial", precio: 500, duracion : 3  },
           { categoria: 'Musica', profesor: 'Pepe Garcia', calificacion: 4.2, frecuencia: "2 Veces por semana", tipo: "Presencial", precio: 800, duracion : 6 },
@@ -30,6 +33,15 @@ class App extends Component {
 
   handleSelectChange = (event) => {
     this.setState({ selectedOption: event.target.value });
+  };
+  handleTipoChange = (event) => {
+    this.setState({ selectedTipo: event.target.value });
+  };
+  handleFrecuenciaChange = (event) => {
+    this.setState({ selectedFrecuencia: event.target.value });
+  };
+  handleCalificacionChange = (event) => {
+    this.setState({ selectedCalificacion: event.target.value });
   };
 
   render() {
@@ -44,7 +56,7 @@ class App extends Component {
             <Route path="/login" element={<Login />}  />
             <Route path="/registro" element={<Registro />}  />
             <Route path="/moreinfo" element={<MoreInfo />}  />
-            <Route path="/anuncios" element={<Anuncios handleSelectChange={this.handleSelectChange} selectedOption={this.state.selectedOption} cursos = {this.state.cursos}/>}  />
+            <Route path="/anuncios" element={<Anuncios handleSelectChange={this.handleSelectChange} selectedOption={this.state.selectedOption} cursos = {this.state.cursos} handleTipoChange={this.handleTipoChange} handleFrecuenciaChange={this.handleFrecuenciaChange} handleCalificacionChange={this.handleCalificacionChange} selectedTipo={this.state.selectedTipo} selectedFrecuencia={this.state.selectedFrecuencia} selectedCalificacion={this.state.selectedCalificacion}/>}  />
           </Routes>
         </Router>
       </div>
