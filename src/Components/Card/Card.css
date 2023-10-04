@@ -1,0 +1,30 @@
+.card{
+    width: 30%;
+    height: 500px;
+    background-color: rgba(202,202,202,.17);
+    margin-bottom: 30px;
+
+}
+.card img{
+    width: 100%;
+}
+
+.left, .right{
+    width: 30%;
+    display: flex;
+    justify-content: flex-start ;align-items: flex-start;flex-direction: column;
+}
+
+.left{
+    width: 70%;
+}
+.right{
+    align-items: center;
+}
+
+.card-info{
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

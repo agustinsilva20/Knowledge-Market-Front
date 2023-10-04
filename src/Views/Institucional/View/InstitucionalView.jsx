@@ -24,10 +24,12 @@ class InstitucionalView extends Component {
     return (
       <div className='InstitucionalView'>
         <h2>¿Necesitas clases particulares?</h2>
-        <h3>Encontra acá todo lo que buscas</h3>
+        <h3>Te ofrecemos los mejores profesores</h3>
         <div className='space'></div>
-        <Dropdown opciones={opciones} handleChange={this.props.handleSelectChange} />
+        {/*<Dropdown opciones={opciones} handleChange={this.props.handleSelectChange} />*/}
+        <h4>Contrata ya mismo a tu proximo profesor</h4>
         <div className='btn-institucional-buscar'>
+          
         <Boton text="Buscar profesores"  handleClick = {this.buscar_cursos}/>
         </div>
         

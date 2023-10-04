@@ -54,6 +54,12 @@ h5{
     font-size: 16px;
 }
 
+h6{
+    color: black;
+    font-family: var(--text-primary);
+    font-weight: 500;
+    font-size: 18px;
+}
 span{
     color: var(--verde)
 }

@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import './AppComponentDiv.css';
 
 class AppComponentDiv extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-
-
+  
   render() {
     return (
       <div className='AppComponentDiv'>
