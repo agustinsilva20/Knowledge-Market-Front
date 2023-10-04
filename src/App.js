@@ -7,6 +7,7 @@ import Header from './Components/Header/Header';
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './Views/Login/Login';
+import Registro from './Views/Registro/Registro';
 
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
           <Routes>
             <Route path="/" element={<Institucional handleSelectChange={this.handleSelectChange} selectedOption={this.state.selectedOption}/>} />
             <Route path="/login" element={<Login />}  />
+            <Route path="/registro" element={<Registro />}  />
           </Routes>
         </Router>
       </div>

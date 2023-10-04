@@ -8,14 +8,14 @@ class LoginView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          userInput: '',
+          correoInput: '',
           passwordInput: '',
 
         };
       }
     
-      user_handleChange = (event) => {
-        this.setState({ userInput: event.target.value });
+      correo_handleChange = (event) => {
+        this.setState({ correoInput: event.target.value });
       };
       password_handleChange = (event) => {
         this.setState({ passwordInput: event.target.value });
@@ -34,7 +34,7 @@ class LoginView extends Component {
 
           
           <form action="" className='centrar form-login'>
-            <Input value={this.state.userInput} onChange={this.user_handleChange} placeholder="Usuario" type="text"/>
+            <Input value={this.state.userInput} onChange={this.correo_handleChange} placeholder="Correo Electronico" type="email"/>
             <Input value={this.state.passwordInput} onChange={this.password_handleChange} placeholder="Contraseña" type="password"/>
           </form>
 
