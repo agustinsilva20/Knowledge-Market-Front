@@ -6,6 +6,7 @@ import Header from './Components/Header/Header';
 
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './Views/Login/Login';
 
 
 class App extends Component {
@@ -30,7 +31,7 @@ class App extends Component {
         <Router>
           <Routes>
             <Route path="/" element={<Institucional handleSelectChange={this.handleSelectChange} selectedOption={this.state.selectedOption}/>} />
-            <Route path="/login" element={<Institucional />}  />
+            <Route path="/login" element={<Login />}  />
           </Routes>
         </Router>
       </div>

@@ -4,7 +4,7 @@ import './InstitucionalView.css';
 import Dropdown from "../../../Components/Dropdown/Dropdown";
 import Boton from '../../../Components/Boton/Boton';
 
-class Institucional extends Component {
+class InstitucionalView extends Component {
   
   render() {
 
@@ -39,4 +39,4 @@ class Institucional extends Component {
   }
 }
 
-export default Institucional;
+export default InstitucionalView;

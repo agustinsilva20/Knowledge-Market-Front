@@ -57,3 +57,7 @@ h5{
 span{
     color: var(--verde)
 }
+
+.centrar{
+    margin: auto;
+}
