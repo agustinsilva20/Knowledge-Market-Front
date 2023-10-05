@@ -187,6 +187,9 @@ class InstitucionalView extends Component {
               
             ))}
         </div>
+
+        {this.state.cursosFiltrados.length === 0 ? (<p>No se encontraron cursos con los filtros seleccionados. Prueba modificando los filtros</p>) : null} 
+
       </div>
     );
   }
