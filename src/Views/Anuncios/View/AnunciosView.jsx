@@ -105,6 +105,21 @@ class InstitucionalView extends Component {
       })
     }
 
+    /* Cuarto filtro por calificacion*/
+    if (calificacion === 'ALL'){
+      cursosFiltrados = cursosFiltrados
+    }
+    else if (calificacion == -1) {
+      cursosFiltrados = cursosFiltrados.filter((curso) => {
+          return curso.calificacion <= 1
+      })
+    }
+  else{
+    cursosFiltrados = cursosFiltrados.filter((curso) => {
+      return curso.calificacion >= calificacion
+    })
+  }
+
     return cursosFiltrados
 
   }
@@ -135,12 +150,11 @@ class InstitucionalView extends Component {
 
     const calificacion = [
       { value: 'ALL', label: 'Todas los calificaciones' },
-      { value: 'MENOS1', label: 'Menos de una estrella' },
-      { value: 'MAS1', label: 'Mas de una estrella' },
-      { value: 'MAS2', label: 'Mas de dos estrellas' },
-      { value: 'MAS3', label: 'Mas de tres estrellas' },
-      { value: 'MAS4', label: 'Mas de cuatro estrellas' },
-      { value: 'MAS5', label: 'Mas de cinco estrellas' },
+      { value: -1, label: 'Menos de una estrella' },
+      { value: 1, label: 'Mas de una estrella' },
+      { value: 2, label: 'Mas de dos estrellas' },
+      { value: 3, label: 'Mas de tres estrellas' },
+      { value: 4, label: 'Mas de cuatro estrellas' }
     ];
 
 
@@ -166,10 +180,6 @@ class InstitucionalView extends Component {
               </div>
         </div>
         
-        <p>{this.props.selectedOption}</p>
-        <p>{this.props.selectedTipo}</p>
-        <p>{this.props.selectedFrecuencia}</p>
-        <p>{this.props.selectedCalificacion}</p>
 
         <div className='cursos-list'>
             {this.state.cursosFiltrados.map((curso, index) => (
