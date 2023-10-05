@@ -38,3 +38,15 @@
     height: 40px;
     cursor: pointer;
 }
+
+.registro-exitoso{
+    text-align: center;
+    color: var(--verde-oscuro);
+    font-weight: 600;
+}
+
+.calificar-ok{
+    text-align: center;
+    color: rgb(45, 45, 153);
+    font-weight: 600;
+}

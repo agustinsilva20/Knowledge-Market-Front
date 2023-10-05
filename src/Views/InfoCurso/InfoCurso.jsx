@@ -12,7 +12,12 @@ class InfoCurso extends Component {
         nombreInput: '',
         calificacionInput: '',
         comentarioInput: '',
-        error:""
+        error:"",
+        telefonoInput:"",
+        horarioInput:"",
+        contrado: false,
+        comentarioEnviado: false
+        
 
     };
   }
@@ -46,6 +51,10 @@ class InfoCurso extends Component {
           const id_comentario = this.state.comentarios.length + 1;
           this.setState({comentarios : [...this.state.comentarios,{id_comentario, nombre,comentario,calificacion}]})
           this.setState({error:""})
+          this.setState({calificacionInput:""})
+          this.setState({nombreInput:""})
+          this.setState({comentarioInput:""})
+          this.setState({comentarioEnviado:true})
         }
         
       } catch (error) {
@@ -53,6 +62,34 @@ class InfoCurso extends Component {
       }
     }
     
+  }
+
+  contratar = () => {
+      const nombre = this.state.nombreInput
+      const telefono = this.state.telefonoInput
+      const horario = this.state.horarioInput
+      const mensaje = this.state.comentarioInput
+      const telefonoRegex = /^\d{8,}$/;
+      if(nombre == ""){
+        this.setState({error:"El nombre es requerido"})
+      }
+      else if (telefono == ""){
+        this.setState({error:"El telefono es requerido"})
+      }
+      else if (horario == ""){
+        this.setState({error:"El horario es requerido"})
+      }
+      else if (mensaje == ""){
+        this.setState({error:"El mensaje es requerido"})
+      }
+      else if (telefonoRegex.test(telefono) == false){
+        this.setState({error:"El telefono debe tener al menos 8 caracteres y deben ser todos números"})
+      }
+      else{
+        this.setState({contrado: true})
+        this.setState({ error: "" })
+        this.setState({ comentarioInput: "" })
+      }
   }
 
   nombre_handleChange = (event) => {
@@ -64,6 +101,13 @@ class InfoCurso extends Component {
   comentario_handleChange = (event) => {
     this.setState({ comentarioInput: event.target.value });
   };
+  telefono_handleChange = (event) => {
+    this.setState({ telefonoInput: event.target.value });
+  }
+  horario_handleChange = (event) => {
+    this.setState({ horarioInput: event.target.value });
+    
+  }
   
   render() {
     const comentarios = this.state.comentarios.map((comentario, index) => (
@@ -77,16 +121,39 @@ class InfoCurso extends Component {
         <div className='eliminar-comentario' onClick={()=> this.eliminarComentario(comentario.id_comentario)}>Eliminar Comentario</div>
       </div>
     ));
+    
 
+    const inputComentario = (<div className="publicar-comentario">
+    <h2 className='text-left'>Calificar Docente</h2>
+    <p className='registro-exitoso'>Tu contratacion fue exitosa, espere a que el docente se ponga en contacto</p>
+    <p className='calificar-ok'>Ya puede calificar a su docente</p>
+    <Input value={this.state.nombreInput} onChange={this.nombre_handleChange} placeholder="Nombre" type="text"/>
+    <Input value={this.state.calificacionInput} onChange={this.calificacion_handleChange} placeholder="Putaje de 5" type="text"/>
+    <Input value={this.state.comentarioInput} onChange={this.comentario_handleChange} placeholder="Comentario" type="text"/>
+    <p className='error'>{this.state.error}</p>
+    <div className='boton-enviar-comentario' onClick={()=> this.agregarComentario(this.state.nombreInput,this.state.comentarioInput,this.state.calificacionInput)}><Boton text= "Enviar Comentario"></Boton></div>
+    
+  </div>)
     const publicarComentario =  (
+      this.state.comentarioEnviado ? <h3 >Calificacion enviada</h3> : inputComentario
+      
+      
+    );
+
+    const contratar =  (
       <div className="publicar-comentario">
+        <h2 className='text-left'>Contratar docente</h2>
+        
         <Input value={this.state.nombreInput} onChange={this.nombre_handleChange} placeholder="Nombre" type="text"/>
-        <Input value={this.state.calificacionInput} onChange={this.calificacion_handleChange} placeholder="Putaje de 5" type="text"/>
-        <Input value={this.state.comentarioInput} onChange={this.comentario_handleChange} placeholder="Comentario" type="text"/>
+        <Input value={this.state.telefonoInput} onChange={this.telefono_handleChange} placeholder="Telefono" type="text"/>
+        <Input value={this.state.horarioInput} onChange={this.horario_handleChange} placeholder="Horario" type="text"/>
+        <Input value={this.state.comentarioInput} onChange={this.comentario_handleChange} placeholder="Mensaje" type="text"/>
         <p className='error'>{this.state.error}</p>
-        <div className='boton-enviar-comentario' onClick={()=> this.agregarComentario(this.state.nombreInput,this.state.comentarioInput,this.state.calificacionInput)}><Boton text= "Enviar Comentario"></Boton></div>
+        <div className='boton-enviar-comentario' onClick={()=> this.contratar()}><Boton text= "Contratar"></Boton></div>
         
       </div>
+
+      
     );
 
     return (
@@ -113,18 +180,20 @@ class InfoCurso extends Component {
               </div>
 
             </div>
-            <div className='btn-contratar'><Boton text="Contratar"/></div>
+            <br />
+            <div className="calificar">
+              
+              {this.state.contrado ? publicarComentario: contratar}
+              
+            </div>
+  
             <br /><br />
             <h2 className='text-left'>Calificaciones</h2>
             <div className='comentarios-div'>
               {comentarios}
             </div>
             
-            <div className="calificar">
-              <h2 className='text-left'>Calificar Docente</h2>
-              {publicarComentario}
-              
-            </div>
+            
          
             </div>
                
