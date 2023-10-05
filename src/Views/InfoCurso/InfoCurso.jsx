@@ -4,16 +4,30 @@ import './InfoCurso.css';
 import Boton from "../../Components/Boton/Boton";
 
 class InfoCurso extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        comentarios : this.props.curso.comentarios
+
+    };
+  }
+
+  eliminarComentario = (idComentarioAEliminar) => {
+    const comentariosFiltrados = this.state.comentarios.filter(comentario => comentario.id_comentario !== idComentarioAEliminar);
+    this.setState({comentarios : comentariosFiltrados})
+
+  }
+
   
   render() {
-    const comentarios = this.props.curso.comentarios.map((comentario, index) => (
+    const comentarios = this.state.comentarios.map((comentario, index) => (
       <div key={index} className='Comentario'>
         <div className='comentario-info'>
           <p className='comentario-p'>Nombre: <span>{comentario.nombre}</span></p>
           <p className='comentario-p'>Comentario: <span>{comentario.comentario}</span></p>
           <p className='comentario-p'>Calificación: <span>{comentario.calificacion}</span></p>
         </div>
-        <div className='eliminar-comentario'>Eliminar Comentario</div>
+        <div className='eliminar-comentario' onClick={()=> this.eliminarComentario(comentario.id_comentario)}>Eliminar Comentario</div>
       </div>
     ));
 
