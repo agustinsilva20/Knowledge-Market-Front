@@ -6,10 +6,44 @@ import Card from "../../../Components/Card/Card";
 
 
 class InstitucionalView extends Component {
-  buscar_cursos = () => {
-    window.location.replace("/anuncios")
-    
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      cursosFiltrados:this.filtrar()
+    };
   }
+
+  
+  handleSelectChange =(event) => {
+    this.props.handleSelectChange(event)
+    let filtro = this.filtrar()
+    console.log(filtro)
+    this.setState({
+      cursosFiltrados: filtro
+    })
+  }
+
+  filtrar = () => {
+    /* Creo objeto de respuesta*/
+    let cursosFiltrados = [];
+
+    /* Primero filtro por Categoria*/
+    let categoria = this.props.selectedOption
+    if (categoria === 'ALL'){
+       cursosFiltrados = this.props.cursos
+    }
+    else{
+      cursosFiltrados = this.props.cursos.filter((curso) => {
+
+        return curso.categoria.toUpperCase() == categoria.toUpperCase()
+      })
+    }
+    return cursosFiltrados
+
+  }
+
+
   render() {
 
     const opciones = [
@@ -49,7 +83,7 @@ class InstitucionalView extends Component {
         <h2>Elije tu Categoria</h2>
         <br />
         <div className='elegir-categoria'>
-          <Dropdown opciones={opciones} handleChange={this.props.handleSelectChange} />
+          <Dropdown opciones={opciones} handleChange={this.handleSelectChange} />
         </div>
         <div className='filtros'>
               <div className='elegir-filtro'>
@@ -72,7 +106,7 @@ class InstitucionalView extends Component {
         <p>{this.props.selectedCalificacion}</p>
 
         <div className='cursos-list'>
-            {this.props.cursos.map((curso, index) => (
+            {this.state.cursosFiltrados.map((curso, index) => (
               <Card curso = {curso}  key={index}/>
               
             ))}
