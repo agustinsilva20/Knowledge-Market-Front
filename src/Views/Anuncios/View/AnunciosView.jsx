@@ -81,8 +81,6 @@ class InstitucionalView extends Component {
     }
     else{
       cursosFiltrados = this.props.cursos.filter((curso) => {
-        console.log(curso.categoria.toUpperCase(), categoria.toUpperCase())
-        console.log(curso.categoria.toUpperCase() == categoria.toUpperCase())
         return curso.categoria.toUpperCase() == categoria.toUpperCase()
       })
     }
@@ -93,11 +91,19 @@ class InstitucionalView extends Component {
    }
    else{
      cursosFiltrados = cursosFiltrados.filter((curso) => {
-       console.log(curso.tipo.toUpperCase(), tipos.toUpperCase())
-       console.log(curso.tipo.toUpperCase() == tipos.toUpperCase())
        return curso.tipo.toUpperCase() == tipos.toUpperCase()
      })
    }
+
+      /* Tercer filtro por frecuencia*/
+      if (frencuencia === 'ALL'){
+        cursosFiltrados = cursosFiltrados
+    }
+    else{
+      cursosFiltrados = cursosFiltrados.filter((curso) => {
+        return curso.frecuencia == frencuencia
+      })
+    }
 
     return cursosFiltrados
 
@@ -120,11 +126,11 @@ class InstitucionalView extends Component {
 
     const frecuencia = [
       { value: 'ALL', label: 'Todas los Frecuencias' },
-      { value: 'UNA', label: '1 vez por semana' },
-      { value: 'DOS', label: '2 veces por semana' },
-      { value: 'TRES', label: '3 veces por semana' },
-      { value: 'CUATRO', label: '4 veces por semana' },
-      { value: 'CINCO', label: '5 veces por semana' },
+      { value: 1, label: '1 vez por semana' },
+      { value: 2, label: '2 veces por semana' },
+      { value: 3, label: '3 veces por semana' },
+      { value: 4, label: '4 veces por semana' },
+      { value: 5, label: '5 veces por semana' },
     ];
 
     const calificacion = [

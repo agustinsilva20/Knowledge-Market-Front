@@ -13,7 +13,7 @@ class Card extends Component {
             <div className="left">
                 <h6>Profesor: <span>{this.props.curso.profesor}</span></h6>
                 <h6>Calificación: <span>{this.props.curso.calificacion}/5</span></h6>
-                <h6>Frecuencia: <span>{this.props.curso.frecuencia}</span></h6>
+                <h6>Frecuencia: <span>{this.props.curso.frecuencia} Veces por semana</span></h6>
                 <h6>Tipo: <span>{this.props.curso.tipo}</span></h6></div>
             <div className="right">
                 <h4>${this.props.curso.precio}</h4>

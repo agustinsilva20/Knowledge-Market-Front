@@ -23,10 +23,10 @@ class App extends Component {
         selectedFrecuencia: 'ALL',
         selectedCalificacion: 'ALL',
         cursos:[
-          { categoria: 'Musica', profesor: 'Juan Carlos', calificacion: 4.5, frecuencia: "3 Veces por semanal", tipo: "Presencial", precio: 500, duracion : 3  },
-          { categoria: 'Musica', profesor: 'Pepe Garcia', calificacion: 4.2, frecuencia: "2 Veces por semana", tipo: "Presencial", precio: 800, duracion : 6 },
-          { categoria: 'Musica', profesor: 'Agustin Perez', calificacion: 3, frecuencia: "1 Veces por semana", tipo: "Virtual", precio: 800, duracion : 6 },
-          { categoria: 'Matematica', profesor: 'Javier Lopez', calificacion: 4.5, frecuencia: "3 Veces por semanal", tipo: "Presencial", precio: 500, duracion : 3  }
+          { categoria: 'Musica', profesor: 'Juan Carlos', calificacion: 4.5, frecuencia: 3, tipo: "Presencial", precio: 500, duracion : 3  },
+          { categoria: 'Musica', profesor: 'Pepe Garcia', calificacion: 4.2, frecuencia: 2, tipo: "Presencial", precio: 800, duracion : 6 },
+          { categoria: 'Musica', profesor: 'Agustin Perez', calificacion: 3, frecuencia: 1, tipo: "Virtual", precio: 800, duracion : 6 },
+          { categoria: 'Matematica', profesor: 'Javier Lopez', calificacion: 4.5, frecuencia: 3, tipo: "Presencial", precio: 500, duracion : 3  }
         ]
     };
   }
