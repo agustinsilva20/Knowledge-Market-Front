@@ -10,35 +10,95 @@ class InstitucionalView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cursosFiltrados:this.filtrar()
+      cursosFiltrados:this.filtrar("ALL", "ALL", "ALL", "ALL")
     };
   }
 
   
   handleSelectChange =(event) => {
     this.props.handleSelectChange(event)
-    let filtro = this.filtrar()
+    let categoria = event.target.value /*Este asi por el asincronismo del setstate*/
+    let tipos =this.props.selectedTipo
+    let frecuencia = this.props.selectedFrecuencia
+    let calificacion = this.props.selectedCalificacion
+    let filtro = this.filtrar(categoria, tipos, frecuencia, calificacion)
     console.log(filtro)
     this.setState({
       cursosFiltrados: filtro
     })
   }
 
-  filtrar = () => {
+  handleTipoChange=(event) => {
+
+    this.props.handleTipoChange(event)
+    let tipos = event.target.value /*Este asi por el asincronismo del setstate*/
+    let categoria =this.props.selectedOption
+    let frecuencia = this.props.selectedFrecuencia
+    let calificacion = this.props.selectedCalificacion
+    console.log(tipos, categoria, frecuencia, calificacion)
+    let filtro = this.filtrar(categoria, tipos, frecuencia, calificacion)
+    console.log(filtro)
+    this.setState({
+      cursosFiltrados: filtro
+    })
+  }
+
+  handleFrecuenciaChange=(event) => {
+
+    this.props.handleFrecuenciaChange(event)
+    let tipos = this.props.selectedTipo
+    let categoria =this.props.selectedOption
+    let frecuencia = event.target.value /*Este asi por el asincronismo del setstate*/
+    let calificacion = this.props.selectedCalificacion
+    let filtro = this.filtrar(categoria, tipos, frecuencia, calificacion)
+    console.log(filtro)
+    this.setState({
+      cursosFiltrados: filtro
+    })
+  }
+
+  handleCalificacionChange =(event) => {
+
+    this.props.handleCalificacionChange(event)
+    let tipos = this.props.selectedTipo
+    let categoria =this.props.selectedOption
+    let frecuencia = this.props.selectedFrecuencia
+    let calificacion = event.target.value /*Este asi por el asincronismo del setstate*/
+    let filtro = this.filtrar(categoria, tipos, frecuencia, calificacion)
+    console.log(filtro)
+    this.setState({
+      cursosFiltrados: filtro
+    })
+  }
+
+  filtrar = (categoria, tipos, frencuencia, calificacion) => {
     /* Creo objeto de respuesta*/
     let cursosFiltrados = [];
 
     /* Primero filtro por Categoria*/
-    let categoria = this.props.selectedOption
     if (categoria === 'ALL'){
        cursosFiltrados = this.props.cursos
     }
     else{
       cursosFiltrados = this.props.cursos.filter((curso) => {
-
+        console.log(curso.categoria.toUpperCase(), categoria.toUpperCase())
+        console.log(curso.categoria.toUpperCase() == categoria.toUpperCase())
         return curso.categoria.toUpperCase() == categoria.toUpperCase()
       })
     }
+
+    /* seguno filtro por Tipo*/
+    if (tipos === 'ALL'){
+      cursosFiltrados = cursosFiltrados
+   }
+   else{
+     cursosFiltrados = cursosFiltrados.filter((curso) => {
+       console.log(curso.tipo.toUpperCase(), tipos.toUpperCase())
+       console.log(curso.tipo.toUpperCase() == tipos.toUpperCase())
+       return curso.tipo.toUpperCase() == tipos.toUpperCase()
+     })
+   }
+
     return cursosFiltrados
 
   }
@@ -88,15 +148,15 @@ class InstitucionalView extends Component {
         <div className='filtros'>
               <div className='elegir-filtro'>
                   <p className='filtro-text'>Filtrar x Tipo</p>
-                  <Dropdown opciones={tipos} handleChange={this.props.handleTipoChange} />
+                  <Dropdown opciones={tipos} handleChange={this.handleTipoChange} />
               </div>
               <div className='elegir-filtro'>
                 <p className='filtro-text'>Filtrar x Frecuencia</p>
-                  <Dropdown opciones={frecuencia} handleChange={this.props.handleFrecuenciaChange} />
+                  <Dropdown opciones={frecuencia} handleChange={this.handleFrecuenciaChange} />
               </div>
               <div className='elegir-filtro'>
                 <p className='filtro-text'>Filtrar x Calificacion</p>
-                <Dropdown opciones={calificacion} handleChange={this.props.handleCalificacionChange} />
+                <Dropdown opciones={calificacion} handleChange={this.handleCalificacionChange} />
               </div>
         </div>
         

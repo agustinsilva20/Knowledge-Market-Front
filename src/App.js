@@ -33,6 +33,8 @@ class App extends Component {
 
   handleSelectChange = (event) => {
     this.setState({ selectedOption: event.target.value });
+
+
   };
   handleTipoChange = (event) => {
     this.setState({ selectedTipo: event.target.value });
