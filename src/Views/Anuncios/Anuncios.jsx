@@ -18,6 +18,7 @@ class Anuncios extends Component {
               selectedTipo={this.props.selectedTipo}
               selectedFrecuencia={this.props.selectedFrecuencia}
               selectedCalificacion={this.props.selectedCalificacion}
+              setModal = {this.props.setModal}
             /> } />
       </div>
     );

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Card.css';
 
+import InfoCurso from '../../Views/InfoCurso/InfoCurso';
+
 class Card extends Component {
 
   render() {
@@ -19,7 +21,10 @@ class Card extends Component {
                 <h4>${this.props.curso.precio}</h4>
             </div>
           </div>
-         <div className='vermas'>VER MAS</div>
+          
+         <div className='vermas' onClick={() => this.props.setModal(true, <InfoCurso curso={this.props.curso} />)}>VER MAS</div>
+
+
       </div>
     );
   }

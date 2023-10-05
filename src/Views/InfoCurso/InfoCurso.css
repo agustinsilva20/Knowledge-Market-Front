@@ -1,0 +1,30 @@
+.btn-contratar{
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.Comentario{
+    background-color: #cacacaaf;
+    border-radius: 0.25em;
+    margin-bottom: 10px;
+    
+    padding-bottom:0px ;
+}
+
+.comentario-p{
+    color: black;
+}
+.comentario-info{
+    padding: 20px;
+}
+.eliminar-comentario{
+    background-color: rgb(230, 37, 37);
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    font-family: var(--text-alternative);
+    cursor: pointer;
+    padding: 2px;
+    font-weight: bold;
+}

@@ -3,6 +3,7 @@ import './AnunciosView.css';
 
 import Dropdown from "../../../Components/Dropdown/Dropdown";
 import Card from "../../../Components/Card/Card";
+import Modal from "../../../Components/Modal/Modal";
 
 
 class InstitucionalView extends Component {
@@ -159,37 +160,40 @@ class InstitucionalView extends Component {
 
 
     return (
-      <div className='InstitucionalView'>
-        <h2>Elije tu Categoria</h2>
-        <br />
-        <div className='elegir-categoria'>
-          <Dropdown opciones={opciones} handleChange={this.handleSelectChange} />
-        </div>
-        <div className='filtros'>
-              <div className='elegir-filtro'>
-                  <p className='filtro-text'>Filtrar x Tipo</p>
-                  <Dropdown opciones={tipos} handleChange={this.handleTipoChange} />
-              </div>
-              <div className='elegir-filtro'>
-                <p className='filtro-text'>Filtrar x Frecuencia</p>
-                  <Dropdown opciones={frecuencia} handleChange={this.handleFrecuenciaChange} />
-              </div>
-              <div className='elegir-filtro'>
-                <p className='filtro-text'>Filtrar x Calificacion</p>
-                <Dropdown opciones={calificacion} handleChange={this.handleCalificacionChange} />
-              </div>
-        </div>
-        
+      <div className="">
+        <div className='InstitucionalView'>
+          
+          <h2>Elije tu Categoria</h2>
+          <br />
+          <div className='elegir-categoria'>
+            <Dropdown opciones={opciones} handleChange={this.handleSelectChange} />
+          </div>
+          <div className='filtros'>
+                <div className='elegir-filtro'>
+                    <p className='filtro-text'>Filtrar x Tipo</p>
+                    <Dropdown opciones={tipos} handleChange={this.handleTipoChange} />
+                </div>
+                <div className='elegir-filtro'>
+                  <p className='filtro-text'>Filtrar x Frecuencia</p>
+                    <Dropdown opciones={frecuencia} handleChange={this.handleFrecuenciaChange} />
+                </div>
+                <div className='elegir-filtro'>
+                  <p className='filtro-text'>Filtrar x Calificacion</p>
+                  <Dropdown opciones={calificacion} handleChange={this.handleCalificacionChange} />
+                </div>
+          </div>
+          
 
-        <div className='cursos-list'>
-            {this.state.cursosFiltrados.map((curso, index) => (
-              <Card curso = {curso}  key={index}/>
-              
-            ))}
+          <div className='cursos-list'>
+              {this.state.cursosFiltrados.map((curso, index) => (
+                <Card curso = {curso}  key={index} setModal = {this.props.setModal}/>
+                
+              ))}
+          </div>
+
+          {this.state.cursosFiltrados.length === 0 ? (<p>No se encontraron cursos con los filtros seleccionados. Prueba modificando los filtros</p>) : null} 
+
         </div>
-
-        {this.state.cursosFiltrados.length === 0 ? (<p>No se encontraron cursos con los filtros seleccionados. Prueba modificando los filtros</p>) : null} 
-
       </div>
     );
   }
