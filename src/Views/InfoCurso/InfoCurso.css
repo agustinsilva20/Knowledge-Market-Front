@@ -28,3 +28,13 @@
     padding: 2px;
     font-weight: bold;
 }
+
+.publicar-comentario{
+    display: flex;flex-direction: column;gap: 10px;
+}
+
+.boton-enviar-comentario{
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+}

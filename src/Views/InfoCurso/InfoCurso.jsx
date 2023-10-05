@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import './InfoCurso.css';
 
 import Boton from "../../Components/Boton/Boton";
+import Input from '../../Components/Input/Input';
 
 class InfoCurso extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        comentarios : this.props.curso.comentarios
+        comentarios : this.props.curso.comentarios,
+        nombreInput: '',
+        calificacionInput: '',
+        comentarioInput: '',
+        error:""
 
     };
   }
@@ -18,11 +23,53 @@ class InfoCurso extends Component {
 
   }
 
+  agregarComentario = (nombre,comentario,calificacion)=> {
+    if (nombre==""){
+      this.setState({error:"El nombre es requerido"})
+    }
+    else if (comentario==""){
+      this.setState({error:"El comentario es requerido"})
+    }
+    else if (calificacion==""){
+      this.setState({error:"La calificacion es requerida"})
+    }
+    else{
+      try {
+        calificacion = parseInt(calificacion); // Intenta convertir la cadena a un número entero
+        if (isNaN(calificacion)) {
+          throw new Error("No es un número válido"); // Lanza un error si no es un número
+        }
+        if (calificacion < 0 || calificacion > 5) {
+          this.setState({error:"La calificación debe estar entre 1 y 5"})
+        }
+        else{
+          const id_comentario = this.state.comentarios.length + 1;
+          this.setState({comentarios : [...this.state.comentarios,{id_comentario, nombre,comentario,calificacion}]})
+          this.setState({error:""})
+        }
+        
+      } catch (error) {
+        this.setState({error:"debes ingresar un numero valido"})
+      }
+    }
+    
+  }
+
+  nombre_handleChange = (event) => {
+    this.setState({ nombreInput: event.target.value });
+  };
+  calificacion_handleChange = (event) => {
+    this.setState({ calificacionInput: event.target.value });
+  };
+  comentario_handleChange = (event) => {
+    this.setState({ comentarioInput: event.target.value });
+  };
   
   render() {
     const comentarios = this.state.comentarios.map((comentario, index) => (
       <div key={index} className='Comentario'>
         <div className='comentario-info'>
+        <p className='comentario-p'>ID: <span>{comentario.id_comentario}</span></p>
           <p className='comentario-p'>Nombre: <span>{comentario.nombre}</span></p>
           <p className='comentario-p'>Comentario: <span>{comentario.comentario}</span></p>
           <p className='comentario-p'>Calificación: <span>{comentario.calificacion}</span></p>
@@ -30,6 +77,17 @@ class InfoCurso extends Component {
         <div className='eliminar-comentario' onClick={()=> this.eliminarComentario(comentario.id_comentario)}>Eliminar Comentario</div>
       </div>
     ));
+
+    const publicarComentario =  (
+      <div className="publicar-comentario">
+        <Input value={this.state.nombreInput} onChange={this.nombre_handleChange} placeholder="Nombre" type="text"/>
+        <Input value={this.state.calificacionInput} onChange={this.calificacion_handleChange} placeholder="Putaje de 5" type="text"/>
+        <Input value={this.state.comentarioInput} onChange={this.comentario_handleChange} placeholder="Comentario" type="text"/>
+        <p className='error'>{this.state.error}</p>
+        <div className='boton-enviar-comentario' onClick={()=> this.agregarComentario(this.state.nombreInput,this.state.comentarioInput,this.state.calificacionInput)}><Boton text= "Enviar Comentario"></Boton></div>
+        
+      </div>
+    );
 
     return (
       
@@ -60,6 +118,12 @@ class InfoCurso extends Component {
             <h2 className='text-left'>Calificaciones</h2>
             <div className='comentarios-div'>
               {comentarios}
+            </div>
+            
+            <div className="calificar">
+              <h2 className='text-left'>Calificar Docente</h2>
+              {publicarComentario}
+              
             </div>
          
             </div>
