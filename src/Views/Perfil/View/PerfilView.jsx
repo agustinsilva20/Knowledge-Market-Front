@@ -215,9 +215,9 @@ class PerfilView extends Component {
         <h2>Bienvenido Profesor</h2>
         <br />
         <div className='opciones-profesor'>
-            <div className='boton-opcion-profesor' onClick={()=>this.cambiarShowing("cursos")}><Boton text="Mis cursos"/></div>
-            <div className='boton-opcion-profesor' onClick={()=>this.cambiarShowing("comentarios")}><Boton text="Gestionar Comentarios"/></div>
-            <div className='boton-opcion-profesor' onClick={()=>this.cambiarShowing("alumnos")}><Boton text="Gestionar Alumnos"/></div>
+            <div className='boton-opcion-profesor' onClick={()=>this.cambiarShowing("cursos")}><Boton text="Mis cursos" estilo={"boton-azul"}/></div>
+            <div className='boton-opcion-profesor' onClick={()=>this.cambiarShowing("comentarios")}><Boton text="Gestionar Comentarios" estilo={"boton-azul"}/></div>
+            <div className='boton-opcion-profesor' onClick={()=>this.cambiarShowing("alumnos")}><Boton text="Gestionar Alumnos" estilo={"boton-azul"}/></div>
         </div>
         {this.state.showing === "cursos"?listarCursos:null}
         {this.state.showing === "comentarios"?listarComentarios:null}

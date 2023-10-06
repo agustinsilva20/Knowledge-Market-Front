@@ -4,8 +4,9 @@ import './Boton.css';
 class Boton extends Component {
 
   render() {
+    const combinedClass = `boton ${this.props.estilo}`;
     return (
-      <div className='boton' onClick={this.props.handleClick} text = {this.props.text}>
+      <div className={combinedClass} onClick={this.props.handleClick} text = {this.props.text}>
             {this.props.text}  
       </div>
     );
