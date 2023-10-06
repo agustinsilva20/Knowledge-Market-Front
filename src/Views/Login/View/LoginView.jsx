@@ -43,6 +43,7 @@ class LoginView extends Component {
           </div>
 
           <h5>¿Sos nuevo? <span><a href="/registro">Registrate</a></span> y publica tus servicios</h5>
+          <h5>¿Olvidaste tu contrasena? <span><a href="/recuperar">Recuperala</a></span></h5>
           
   
   
