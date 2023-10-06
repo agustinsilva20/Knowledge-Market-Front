@@ -125,8 +125,6 @@ class InfoCurso extends Component {
 
     const inputComentario = (<div className="publicar-comentario">
     <h2 className='text-left'>Calificar Docente</h2>
-    <p className='registro-exitoso'>Tu contratacion fue exitosa, espere a que el docente se ponga en contacto</p>
-    <p className='calificar-ok'>Ya puede calificar a su docente</p>
     <Input value={this.state.nombreInput} onChange={this.nombre_handleChange} placeholder="Nombre" type="text"/>
     <Input value={this.state.calificacionInput} onChange={this.calificacion_handleChange} placeholder="Putaje de 5" type="text"/>
     <Input value={this.state.comentarioInput} onChange={this.comentario_handleChange} placeholder="Comentario" type="text"/>
@@ -181,11 +179,23 @@ class InfoCurso extends Component {
 
             </div>
             <br />
-            <div className="calificar">
+            {/*
+                <div className="calificar">
               
               {this.state.contrado ? publicarComentario: contratar}
               
             </div>
+
+            */}
+
+            <div className="calificar">
+              <br /><br /><br />
+              {contratar}
+              <br /><br /><br />
+              {publicarComentario}
+              <br /><br /><br />
+            </div>
+            
   
             <br /><br />
             <h2 className='text-left'>Calificaciones</h2>
