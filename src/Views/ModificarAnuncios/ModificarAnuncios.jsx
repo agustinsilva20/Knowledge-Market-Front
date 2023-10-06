@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
-import './CrearAnuncio.css';
+import './ModificarAnuncios.css';
 import Input from '../../Components/Input/Input';
 import Boton from '../../Components/Boton/Boton';
 import Dropdown from '../../Components/Dropdown/Dropdown';
 
-class CrearAnuncio extends Component {
+class ModificarAnuncios extends Component {
   constructor(props) {
     super(props);
     this.state = {
       estadoInput: 'publicado',
       mioInput: "true",
-      categoriaInput:"",
+      categoriaInput:this.props.curso.categoria,
       calificacionInput: 0,
       profesorInput: "Juan",
-      frecuenciaInput: "",
-      tipoInput: "",
-      precioInput:"",
-      duracionInput: "",
-      descripcionInput: "",
+      frecuenciaInput: this.props.curso.frecuencia,
+      tipoInput: this.props.curso.tipo,
+      precioInput:this.props.curso.precio,
+      duracionInput: this.props.curso.duracion,
+      descripcionInput: this.props.curso.descripcion,
       comentarios:[],
       error:"",
       exito:""
@@ -44,15 +44,24 @@ class CrearAnuncio extends Component {
     this.setState({ descripcionInput: event.target.value });
   };
 
-  crear_anuncio =() => {
-    if (this.state.categoriaInput=="" || this.state.frecuenciaInput=="" || this.state.tipoInput=="" || this.state.precioInput=="" || this.state.duracionInput=="" || this.state.descripcionInput=="" || this.state.categoriaInput=="VACIO"|| this.state.frecuenciaInputput=="VACIO"|| this.state.tipoInput=="VACIO" ){
+  modificar_anuncio =() => {
+    if (this.state.categoriaInput==="" || this.state.frecuenciaInput==="" || this.state.tipoInput==="" || this.state.precioInput==="" || this.state.duracionInput==="" || this.state.descripcionInput==="" || this.state.categoriaInput==="VACIO"|| this.state.frecuenciaInputput==="VACIO"|| this.state.tipoInput==="VACIO" ){
       this.setState({error:"Todos los campos son obligatorios"})
       this.setState({exito:""})
     }
     else{
       this.setState({error:""})
-      this.setState({exito:"Curso caragado con exito"})
-      this.props.agregarCurso(this.state);
+      this.setState({exito:"Curso modificado con exito"})
+      const datosEditados = {
+        categoria : this.state.categoriaInput,
+        frecuencia : this.state.frecuenciaInput,
+        tipo : this.state.tipoInput,
+        precio : this.state.precioInput,
+        duracion : this.state.duracionInput,
+        descripcion : this.state.descripcionInput,
+
+      }
+      this.props.editarCurso(this.props.curso.id, datosEditados);
     }
     
   }
@@ -80,17 +89,19 @@ class CrearAnuncio extends Component {
     ];
     return (
       <div className="">
-        <h2>Crear Anuncio</h2>
+        <h2>Modificar Anuncio</h2>
         <form action="" className='centrar form-login'>
              <p>Categoria</p>
-             <Dropdown opciones={categoria} handleChange={this.categoriaInput_handleChange} />
+             <Dropdown opciones={categoria} handleChange={this.categoriaInput_handleChange} value = {this.state.categoriaInput} />
              <p>Veces por semana</p>
-            <Dropdown opciones={frecuencia} handleChange={this.frecuenciaInput_handleChange} />
+            <Dropdown opciones={frecuencia} handleChange={this.frecuenciaInput_handleChange} value = {this.state.frecuenciaInput} />
             <p>Cantidad de semanas</p>
-            <Input value={this.state.duracionInput} onChange={this.duracionInput_handleChange} placeholder="Cantidad Semanas" type="text"/>
+            <Input value={this.state.duracionInput} onChange={this.duracionInput_handleChange} placeholder="Cantidad Semanas" type="text" />
             <p>Tipo de cursada</p>
-            <Dropdown opciones={tipos} handleChange={this.tipoInput_handleChange} />
+            <Dropdown opciones={tipos} handleChange={this.tipoInput_handleChange} value = {this.state.tipoInput}/>
+            <p>Descripcion del anuncio</p>
             <Input value={this.state.descripcionInput} onChange={this.descripcionInput_handleChange} placeholder="Descripcion" type="text"/>
+            <p>Precio del anuncio</p>
             <Input value={this.state.precioInput} onChange={this.precioInput_handleChange} placeholder="Precio" type="text"/>
             <p className='Error-text'>{this.state.error}</p>
             <p className='Exito-text'>{this.state.exito}</p>
@@ -98,12 +109,12 @@ class CrearAnuncio extends Component {
           
           </form>
 
-          <div className='centrar btn-login' onClick = {this.crear_anuncio}>
-            <Boton text="Crear Anuncio"/>
+          <div className='centrar btn-login' onClick = {this.modificar_anuncio}>
+            <Boton text="Modificar Anuncio"/>
           </div>
       </div>
     );
   }
 }
 
-export default CrearAnuncio;
+export default ModificarAnuncios;

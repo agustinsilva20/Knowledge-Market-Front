@@ -4,6 +4,7 @@ import "./PerfilView.css";
 import cursosData from '../../../mockdata.json'; // Importa el JSON
 import ListCursos from '../../../Components/ListCursos/ListCursos';
 import CrearAnuncio from '../../CrearAnuncio/CrearAnuncio';
+import ModificarAnuncios from '../../ModificarAnuncios/ModificarAnuncios';
 
 
 class PerfilView extends Component {
@@ -40,8 +41,45 @@ class PerfilView extends Component {
     this.setState({ cursos: cursosActualizados });
   };
 
+  editarCurso = (id, datosActualizados) => {
+    /*this.setState(prevState => {
+      console.log('ID del curso a editar:', id);
+      console.log('Datos actualizados:', datosActualizados);
+      
+      const cursosActualizados = prevState.cursos.map(curso => {
+        if (curso.id === id) {
+          return { ...curso, ...datosActualizados };
+        }
+        return curso;
+      });
+      return { cursos: cursosActualizados };
+    });*/
+    const cursosNuevo = {
+      
+    }
+    let cursosActualizados = this.state.cursos
+
+    cursosActualizados = cursosActualizados.map(
+      curso => {
+        if (curso.id === id) {
+          return { ...curso, ...datosActualizados };
+        }
+        return curso;
+      }
+      );
+
+      this.setState({ cursos: cursosActualizados });
+
+    console.log(cursosActualizados)
+    
+  };
+
   create_anuncios = () => {
     this.props.setModal(true,<CrearAnuncio agregarCurso={this.agregarCurso}/>)
+  }
+
+  modificar_anuncios = (curso) => {
+    this.props.setModal(true,<ModificarAnuncios editarCurso={this.editarCurso} curso = {curso}/>)
   }
 
   togglePublicado = id => {
@@ -64,7 +102,7 @@ class PerfilView extends Component {
     const cursosMios = this.state.cursos.filter(curso => curso.mio === true);
     return cursosMios.map(curso => (
       <div key={curso.id}>
-        <ListCursos curso={curso} eliminarCurso={this.eliminarCurso} togglePublicado={this.togglePublicado}/>
+        <ListCursos curso={curso} eliminarCurso={this.eliminarCurso} togglePublicado={this.togglePublicado} modificar_anuncios = {this.modificar_anuncios}/>
         
         
       </div>

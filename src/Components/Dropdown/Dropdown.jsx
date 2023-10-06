@@ -8,7 +8,7 @@ class Dropdown extends Component {
 
 
     return (
-      <select onChange={handleChange} className="custom-select"> 
+      <select onChange={handleChange} className="custom-select" value={this.props.value}> 
         {opciones.map((opcion, index) => (
           <option key={index} value={opcion.value}>{opcion.label}</option>
         ))}

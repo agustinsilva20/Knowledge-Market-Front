@@ -14,7 +14,7 @@ class ListCursos extends Component {
                 <p>Precio: <span>${this.props.curso.precio}</span> </p>
                 <p>Estado: <span className={this.props.curso.estado}>{this.props.curso.estado}</span></p>
                 <div className='listado-acciones'>
-                    <div><Boton text="Editar"/></div>
+                    <div onClick={() => this.props.modificar_anuncios(this.props.curso)}><Boton text="Editar"/></div>
                     <div onClick={() => this.props.eliminarCurso(this.props.curso.id)}><Boton text="Eliminar"/></div>
                     <div onClick={() => this.props.togglePublicado(this.props.curso.id)}>
                       {this.props.curso.estado === "publicado"?<Boton text="Despublicar"/>:<Boton text="Publicar"/>}
