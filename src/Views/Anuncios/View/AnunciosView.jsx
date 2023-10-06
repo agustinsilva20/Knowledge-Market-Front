@@ -15,9 +15,9 @@ class InstitucionalView extends Component {
       cursosFiltrados:this.filtrar("ALL", "ALL", "ALL", "ALL")
     };
   }
-
+  
   create_anuncios = () => {
-    this.props.setModal(true,<CrearAnuncio/>)
+    this.props.setModal(true,<CrearAnuncio agregarCurso={this.props.agregarCurso}/>)
   }
   handleSelectChange =(event) => {
     this.props.handleSelectChange(event)

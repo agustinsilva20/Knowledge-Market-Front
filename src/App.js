@@ -57,6 +57,34 @@ class App extends Component {
     console.log(elem)
   }
 
+  agregarCurso = (newCurso) => {
+    const cursos= this.state.cursos;
+    const nuevoCurso = {
+      estado: 'publicado',
+      mio: true,
+      categoria:newCurso.categoriaInput,
+      calificacion: 0,
+      profesor: "Juan",
+      frecuencia :newCurso.frecuenciaInput,
+      tipo:newCurso.tipoInput,
+      precio:newCurso.precioInput,
+      duracion:newCurso.duracionInput,
+      descripcion:newCurso.descripcionInput,
+      comentarios:[],
+      id : null
+    }
+    
+
+
+    // Generar un ID único para el nuevo curso
+    nuevoCurso.id = Date.now();
+
+    // Agregar el nuevo curso a la lista de cursos
+    const cursosActualizados = [...cursos, nuevoCurso];
+    this.setState({ cursos: cursosActualizados });
+    console.log(cursosActualizados)
+  };
+
 
   render() {
     return (
@@ -71,7 +99,7 @@ class App extends Component {
             <Route path="/login" element={<Login />}  />
             <Route path="/registro" element={<Registro />}  />
             <Route path="/moreinfo" element={<MoreInfo />}  />
-            <Route path="/anuncios" element={<Anuncios handleSelectChange={this.handleSelectChange} selectedOption={this.state.selectedOption} cursos = {this.state.cursos} handleTipoChange={this.handleTipoChange} handleFrecuenciaChange={this.handleFrecuenciaChange} handleCalificacionChange={this.handleCalificacionChange} selectedTipo={this.state.selectedTipo} selectedFrecuencia={this.state.selectedFrecuencia} selectedCalificacion={this.state.selectedCalificacion} setModal = {this.setModal}/>}  />
+            <Route path="/anuncios" element={<Anuncios handleSelectChange={this.handleSelectChange} selectedOption={this.state.selectedOption} cursos = {this.state.cursos} handleTipoChange={this.handleTipoChange} handleFrecuenciaChange={this.handleFrecuenciaChange} handleCalificacionChange={this.handleCalificacionChange} selectedTipo={this.state.selectedTipo} selectedFrecuencia={this.state.selectedFrecuencia} selectedCalificacion={this.state.selectedCalificacion} setModal = {this.setModal} agregarCurso={this.agregarCurso}/>}  />
             <Route path="/perfil" element={<Perfil setModal={this.setModal}/>}  />
           </Routes>
         </Router>

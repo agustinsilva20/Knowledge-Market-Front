@@ -33,7 +33,7 @@ class PerfilView extends Component {
       comentarios:[],
       id : null
     }
-    console.log("asd")
+
 
     // Generar un ID único para el nuevo curso
     nuevoCurso.id = Date.now();
