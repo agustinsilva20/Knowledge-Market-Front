@@ -72,7 +72,7 @@ class App extends Component {
             <Route path="/registro" element={<Registro />}  />
             <Route path="/moreinfo" element={<MoreInfo />}  />
             <Route path="/anuncios" element={<Anuncios handleSelectChange={this.handleSelectChange} selectedOption={this.state.selectedOption} cursos = {this.state.cursos} handleTipoChange={this.handleTipoChange} handleFrecuenciaChange={this.handleFrecuenciaChange} handleCalificacionChange={this.handleCalificacionChange} selectedTipo={this.state.selectedTipo} selectedFrecuencia={this.state.selectedFrecuencia} selectedCalificacion={this.state.selectedCalificacion} setModal = {this.setModal}/>}  />
-            <Route path="/perfil" element={<Perfil />}  />
+            <Route path="/perfil" element={<Perfil setModal={this.setModal}/>}  />
           </Routes>
         </Router>
       </div>

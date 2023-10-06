@@ -11,7 +11,7 @@ class Perfil extends Component {
     
     return (
       <div className='login'>
-        <AppComponentDiv element = {<PerfilView/> } />
+        <AppComponentDiv element = {<PerfilView setModal={this.props.setModal}/> } />
         
       </div>
       

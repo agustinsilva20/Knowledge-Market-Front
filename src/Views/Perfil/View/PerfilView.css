@@ -13,3 +13,10 @@
 .perfil-div{
     margin-top: 40px;
 }
+
+.boton-opcion-profesor-crear{
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
