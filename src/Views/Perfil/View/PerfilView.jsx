@@ -12,7 +12,8 @@ class PerfilView extends Component {
     super(props);
     this.state = {
         cursos: cursosData.cursos,
-        showing: "cursos"
+        showing: "cursos",
+        comentarios:[{"id_comentario":1,"nombre": "Carla", "comentario": "Divertida la clase", "calificacion": 4.5}, {"id_comentario":2,"nombre": "Juana", "comentario": "No me gusto", "calificacion": 0}]
     };
   }
   agregarCurso = (newCurso) => {
@@ -109,6 +110,14 @@ class PerfilView extends Component {
     ));
   };
 
+  cambiarShowing = (showing) => {
+    this.setState({ showing: showing });
+  }
+
+  eliminarComentario = (idComentarioAEliminar) => {
+    const comentariosFiltrados = this.state.comentarios.filter(comentario => comentario.id_comentario !== idComentarioAEliminar);
+    this.setState({comentarios : comentariosFiltrados})
+  }
   
 
   render() {
@@ -120,18 +129,39 @@ class PerfilView extends Component {
           {this.obtenerCursosMios()}
           </div>
       </div>
-  );
+    );
+
+    const listarComentarios = (
+      <div className='perfil-div'>
+          <h2>Tus Comentarios</h2>
+          <div className='listado-mis-cursos'>
+          {this.state.comentarios.map((comentario, index) => (
+            <div key={index} className='Comentario'>
+              <div className='comentario-info'>
+              <p className='comentario-p'>ID: <span>{comentario.id_comentario}</span></p>
+                <p className='comentario-p'>Nombre: <span>{comentario.nombre}</span></p>
+                <p className='comentario-p'>Comentario: <span>{comentario.comentario}</span></p>
+                <p className='comentario-p'>Calificación: <span>{comentario.calificacion}</span></p>
+              </div>
+              <div className='eliminar-comentario' onClick={()=> this.eliminarComentario(comentario.id_comentario)}>Eliminar Comentario</div>
+            </div>
+          ))}
+          </div>
+      </div>
+    );
+
 
     return (
       <div>
         <h2>Bienvenido Profesor</h2>
         <br />
         <div className='opciones-profesor'>
-            <div className='boton-opcion-profesor'><Boton text="Mis cursos"/></div>
-            <div className='boton-opcion-profesor'><Boton text="Gestionar Comentarios"/></div>
-            <div className='boton-opcion-profesor'><Boton text="Gestionar Alumnos"/></div>
+            <div className='boton-opcion-profesor' onClick={()=>this.cambiarShowing("cursos")}><Boton text="Mis cursos"/></div>
+            <div className='boton-opcion-profesor' onClick={()=>this.cambiarShowing("comentarios")}><Boton text="Gestionar Comentarios"/></div>
+            <div className='boton-opcion-profesor' onClick={()=>this.cambiarShowing("alumnos")}><Boton text="Gestionar Alumnos"/></div>
         </div>
         {this.state.showing === "cursos"?listarCursos:null}
+        {this.state.showing === "comentarios"?listarComentarios:null}
       </div>
     );
   }
