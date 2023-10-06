@@ -206,7 +206,7 @@ class InfoCurso extends Component {
             
   
             <br /><br />
-            <h2 className='text-left'>Calificaciones</h2>
+            <h2 className='text-left'>Calificaciones del docente</h2><br />
             <div className='comentarios-div'>
               {comentarios}
             </div>
