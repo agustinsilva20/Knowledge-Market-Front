@@ -99,6 +99,9 @@ class InfoCurso extends Component {
   nombre_handleChange = (event) => {
     this.setState({ nombreInput: event.target.value });
   };
+  nombre2_handleChange = (event) => {
+    this.setState({ nombre2Input: event.target.value });
+  };
   calificacion_handleChange = (event) => {
     this.setState({ calificacionInput: event.target.value });
   };
@@ -129,11 +132,11 @@ class InfoCurso extends Component {
 
     const inputComentario = (<div className="publicar-comentario">
     <h2 className='text-left'>Calificar Docente</h2>
-    <Input value={this.state.nombreInput} onChange={this.nombre_handleChange} placeholder="Nombre" type="text"/>
+    <Input value={this.state.nombre2Input} onChange={this.nombre2_handleChange} placeholder="Nombre" type="text"/>
     <Input value={this.state.calificacionInput} onChange={this.calificacion_handleChange} placeholder="Putaje de 5" type="text"/>
     <Input value={this.state.comentarioInput} onChange={this.comentario_handleChange} placeholder="Comentario" type="text"/>
     <p className='error'>{this.state.error}</p>
-    <div className='boton-enviar-comentario' onClick={()=> this.agregarComentario(this.state.nombreInput,this.state.comentarioInput,this.state.calificacionInput)}><Boton text= "Enviar Comentario"></Boton></div>
+    <div className='boton-enviar-comentario' onClick={()=> this.agregarComentario(this.state.nombre2Input,this.state.comentarioInput,this.state.calificacionInput)}><Boton text= "Enviar Comentario"></Boton></div>
     
   </div>)
     const publicarComentario =  (
