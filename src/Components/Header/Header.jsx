@@ -7,7 +7,8 @@ class Header extends Component {
     return (
       <div className='Header-div'>
             <nav>
-              <ul><a href="">Menu</a></ul>
+              <ul><a href="/anuncios">Menu</a></ul>
+              <ul><a href="/perfil">Mi perfil</a></ul>
             </nav>
             <div className='logo-img'><img src="./src/Logo.png" alt="" /></div>
             

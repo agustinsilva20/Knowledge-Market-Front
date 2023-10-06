@@ -97,7 +97,7 @@ class LoginView extends Component {
             <Boton text="Iniciar Sesion" handleClick = {this.registrarse_action}/>
           </div>
 
-          <h5>¿Sos nuevo? <span><a href="/registro">Registrate</a></span> y publica tus servicios</h5>
+          <h5>¿Ya tenes cuenta? <span><a href="/login">Inicia Sesion</a></span></h5>
           
   
   

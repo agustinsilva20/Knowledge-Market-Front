@@ -36,9 +36,9 @@ class InstitucionalView extends Component {
         <div className='space'></div>
         <h4>¿Deseas ofrecer tus servicios?</h4>
         <div className='btn-institucional-registro'>
-          <Boton text="Registrate"/>
+          <a href="/registro"><Boton text="Registrate"/></a>
         </div>
-        <h5>¿Ya estas registrado? <span>Ingresa a tu cuenta</span></h5>
+        <h5>¿Ya estas registrado? <a href="/login"><span>Ingresa a tu cuenta</span></a></h5>
         <br />
         
 
