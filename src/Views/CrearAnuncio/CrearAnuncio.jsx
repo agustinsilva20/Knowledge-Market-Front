@@ -18,7 +18,9 @@ class CrearAnuncio extends Component {
       precioInput:"",
       duracionInput: "",
       descripcionInput: "",
-      comentarios:[]
+      comentarios:[],
+      error:"",
+      exito:""
 
     };
   }
@@ -43,22 +45,33 @@ class CrearAnuncio extends Component {
   };
 
   crear_anuncio =() => {
-    console.log("Test")
-    this.props.agregarCurso(this.state);
+    if (this.state.categoriaInput=="" || this.state.frecuenciaInput=="" || this.state.tipoInput=="" || this.state.precioInput=="" || this.state.duracionInput=="" || this.state.descripcionInput=="" || this.state.categoriaInput=="VACIO"|| this.state.frecuenciaInputput=="VACIO"|| this.state.tipoInput=="VACIO" ){
+      this.setState({error:"Todos los campos son obligatorios"})
+      this.setState({exito:""})
+    }
+    else{
+      this.setState({error:""})
+      this.setState({exito:"Curso caragado con exito"})
+      this.props.agregarCurso(this.state);
+    }
+    
   }
   
   render() {
     const categoria = [
+      { value: 'VACIO', label: 'Selecciona categoria' },
       { value: 'MUSICA', label: 'Musica' },
       { value: 'MATEMATICA', label: 'Matematica' }
     ];
 
     const tipos = [
+      { value: 'VACIO', label: 'Selecciona un tipo' },
       { value: 'PRESENCIAL', label: 'Presencial' },
       { value: 'VIRTUAL', label: 'Virtual' }
     ];
 
     const frecuencia = [
+      { value: 'VACIO', label: 'Selecciona veces por semana' },
       { value: 1, label: '1 vez por semana' },
       { value: 2, label: '2 veces por semana' },
       { value: 3, label: '3 veces por semana' },
@@ -79,6 +92,8 @@ class CrearAnuncio extends Component {
             <Dropdown opciones={frecuencia} handleChange={this.tipoInput_handleChange} />
             <Input value={this.state.descripcionInput} onChange={this.descripcionInput_handleChange} placeholder="Descripcion" type="text"/>
             <Input value={this.state.precioInput} onChange={this.precioInput_handleChange} placeholder="Precio" type="text"/>
+            <p className='Error-text'>{this.state.error}</p>
+            <p className='Exito-text'>{this.state.exito}</p>
             
           
           </form>
