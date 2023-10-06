@@ -9,8 +9,10 @@ class Header extends Component {
             <nav>
               <ul><a href="/anuncios">Menu</a></ul>
               <ul><a href="/perfil">Mi perfil</a></ul>
+
             </nav>
-            <div className='logo-img'><img src="./src/Logo.png" alt="" /></div>
+            <a href="/anuncios"><div className='logo-img'><img src="./src/Logo.png" alt="" /></div></a>
+            
             
       </div>
     );

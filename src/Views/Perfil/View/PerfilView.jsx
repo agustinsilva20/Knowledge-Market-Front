@@ -13,7 +13,7 @@ class PerfilView extends Component {
     this.state = {
         cursos: cursosData.cursos,
         showing: "cursos",
-        alumnos:[{nombre:"Alberto", telefono: "1234567890", mail : "uZx2r@example.com", id:1, estado: "SOLICITADO"},{nombre:"Juan", telefono: "1234563220", mail : "uZx2eeer@example.com", id:2, estado: "SOLICITADO"}],
+        alumnos:[{nombre:"Alberto", telefono: "1234567890", mail : "uZx2r@example.com", id:1, estado: "SOLICITADO", curso: "Musica"},{nombre:"Juan", telefono: "1234563220", mail : "uZx2eeer@example.com", id:2, estado: "SOLICITADO", curso: "Musica"}],
         comentarios:[{"id_comentario":1,"nombre": "Carla", "comentario": "Divertida la clase", "calificacion": 4.5}, {"id_comentario":2,"nombre": "Juana", "comentario": "No me gusto", "calificacion": 0}]
     };
   }
@@ -181,6 +181,7 @@ class PerfilView extends Component {
           {this.state.alumnos.map((alumno, index) => (
             <div key={index} className='Comentario'>
               <div className='comentario-info'>
+              <p className='comentario-p'>Curso de: <span>{alumno.curso}</span></p>
                 <p className='comentario-p'>Nombre: <span>{alumno.nombre}</span></p>
                 <p className='comentario-p'>Telefono: <span>{alumno.telefono}</span></p>
                 <p className='comentario-p'>Mail: <span>{alumno.mail}</span></p>
