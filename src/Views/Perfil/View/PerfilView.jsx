@@ -13,6 +13,7 @@ class PerfilView extends Component {
     this.state = {
         cursos: cursosData.cursos,
         showing: "cursos",
+        alumnos:[{nombre:"Alberto", telefono: "1234567890", mail : "uZx2r@example.com", id:1, estado: "SOLICITADO"},{nombre:"Juan", telefono: "1234563220", mail : "uZx2eeer@example.com", id:2, estado: "SOLICITADO"}],
         comentarios:[{"id_comentario":1,"nombre": "Carla", "comentario": "Divertida la clase", "calificacion": 4.5}, {"id_comentario":2,"nombre": "Juana", "comentario": "No me gusto", "calificacion": 0}]
     };
   }
@@ -118,6 +119,11 @@ class PerfilView extends Component {
     const comentariosFiltrados = this.state.comentarios.filter(comentario => comentario.id_comentario !== idComentarioAEliminar);
     this.setState({comentarios : comentariosFiltrados})
   }
+
+  rechazarAlumno = (idAlumnoAEliminar) => {
+    const alumnosFiltrados = this.state.alumnos.filter(alumno => alumno.id !== idAlumnoAEliminar);
+    this.setState({alumnos : alumnosFiltrados})
+  }
   
 
   render() {
@@ -150,6 +156,33 @@ class PerfilView extends Component {
       </div>
     );
 
+    const listarAlumnos = (
+      <div className='perfil-div'>
+          <h2>Tus Alumnos</h2>
+          <div className='listado-mis-cursos'>
+          {this.state.alumnos.map((alumno, index) => (
+            <div key={index} className='Comentario'>
+              <div className='comentario-info'>
+                <p className='comentario-p'>Nombre: <span>{alumno.nombre}</span></p>
+                <p className='comentario-p'>Telefono: <span>{alumno.telefono}</span></p>
+                <p className='comentario-p'>Mail: <span>{alumno.estado}</span></p>
+                <p className='comentario-p'>Estado: <span>{alumno.estado}</span></p>
+              </div>
+              {
+                alumno.estado === "SOLICITADO" ? <div className="acciones-alumnos">
+                <div onClick={()=> this.rechazarAlumno(alumno.id)}><Boton text="Rechazar Alumno"/></div>
+                <div><Boton text="Aceptar Alumno"/></div>
+              </div>:
+              null
+              }
+              
+              
+            </div>
+          ))}          
+          </div>
+      </div>
+    );
+
 
     return (
       <div>
@@ -162,6 +195,7 @@ class PerfilView extends Component {
         </div>
         {this.state.showing === "cursos"?listarCursos:null}
         {this.state.showing === "comentarios"?listarComentarios:null}
+        {this.state.showing === "alumnos"?listarAlumnos:null}
       </div>
     );
   }
