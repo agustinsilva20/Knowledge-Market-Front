@@ -28,3 +28,13 @@
     text-align: center;
     margin-bottom: 10px;
 }
+
+.div-crear-anuncio{
+    width: 100%;
+    display: flex;align-items: center;justify-content: flex-end;
+}
+
+.btn-crear{
+    width: 200px;
+    height: 30px;
+}

@@ -3,7 +3,8 @@ import './AnunciosView.css';
 
 import Dropdown from "../../../Components/Dropdown/Dropdown";
 import Card from "../../../Components/Card/Card";
-import Modal from "../../../Components/Modal/Modal";
+import Boton from '../../../Components/Boton/Boton';
+import CrearAnuncio from '../../CrearAnuncio/CrearAnuncio';
 
 
 class InstitucionalView extends Component {
@@ -15,7 +16,9 @@ class InstitucionalView extends Component {
     };
   }
 
-  
+  create_anuncios = () => {
+    this.props.setModal(true,<CrearAnuncio/>)
+  }
   handleSelectChange =(event) => {
     this.props.handleSelectChange(event)
     let categoria = event.target.value /*Este asi por el asincronismo del setstate*/
@@ -162,7 +165,9 @@ class InstitucionalView extends Component {
     return (
       <div className="">
         <div className='InstitucionalView'>
-          
+          <div className='div-crear-anuncio'>
+              <div className='btn-crear' onClick={this.create_anuncios}><Boton text="Crear Anuncio"/></div>
+          </div>
           <h2>Elije tu Categoria</h2>
           <br />
           <div className='elegir-categoria'>
