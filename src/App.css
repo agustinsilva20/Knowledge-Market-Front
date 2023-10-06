@@ -129,6 +129,12 @@ p{
     .card{
         width: 100% !important;
     }
+    .modal{
+        width: 90% !important;
+    }
+    .info-curso{
+        flex-direction: column;
+    }
 
     
   }
