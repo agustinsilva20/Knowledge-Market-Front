@@ -10,6 +10,7 @@ import Login from './Views/Login/Login';
 import Registro from './Views/Registro/Registro';
 import MoreInfo from './Views/MoreInfo/MoreInfo';
 import Anuncios from './Views/Anuncios/Anuncios';
+import Perfil from './Views/Perfil/Perfil';
 
 import Modal from './Components/Modal/Modal';
 
@@ -71,6 +72,7 @@ class App extends Component {
             <Route path="/registro" element={<Registro />}  />
             <Route path="/moreinfo" element={<MoreInfo />}  />
             <Route path="/anuncios" element={<Anuncios handleSelectChange={this.handleSelectChange} selectedOption={this.state.selectedOption} cursos = {this.state.cursos} handleTipoChange={this.handleTipoChange} handleFrecuenciaChange={this.handleFrecuenciaChange} handleCalificacionChange={this.handleCalificacionChange} selectedTipo={this.state.selectedTipo} selectedFrecuencia={this.state.selectedFrecuencia} selectedCalificacion={this.state.selectedCalificacion} setModal = {this.setModal}/>}  />
+            <Route path="/perfil" element={<Perfil />}  />
           </Routes>
         </Router>
       </div>

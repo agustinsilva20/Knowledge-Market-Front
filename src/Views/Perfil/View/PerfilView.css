@@ -1,0 +1,15 @@
+.opciones-profesor{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.boton-opcion-profesor{
+    width: 25%;
+    height: 40px;
+}
+
+.perfil-div{
+    margin-top: 40px;
+}
