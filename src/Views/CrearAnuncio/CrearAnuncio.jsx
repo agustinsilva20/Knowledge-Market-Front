@@ -90,7 +90,9 @@ class CrearAnuncio extends Component {
             <Input value={this.state.duracionInput} onChange={this.duracionInput_handleChange} placeholder="Cantidad Semanas" type="text"/>
             <p>Tipo de cursada</p>
             <Dropdown opciones={tipos} handleChange={this.tipoInput_handleChange} />
+            <p>Descripcion del Anuncio</p>
             <Input value={this.state.descripcionInput} onChange={this.descripcionInput_handleChange} placeholder="Descripcion" type="text"/>
+            <p>Precio del anuncio</p>
             <Input value={this.state.precioInput} onChange={this.precioInput_handleChange} placeholder="Precio" type="text"/>
             <p className='Error-text'>{this.state.error}</p>
             <p className='Exito-text'>{this.state.exito}</p>
