@@ -135,6 +135,30 @@ p{
     .info-curso{
         flex-direction: column;
     }
+    .opciones-profesor{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .boton-opcion-profesor{
+        width: 100% !important;
+    }
+    .listado-acciones{
+        flex-direction: column;
+    }
+    .acciones-alumnos{
+        flex-direction: column;
+        gap: 10px !important;
+        height: auto !important;
+    }
+    .listado-mis-cursos{
+        padding-bottom: 20px;
+    }
+    .acciones-alumnos div{
+        width: 90% !important;display: flex;justify-content: center;align-items: center;
+    }
+    .Comentario2{
+        padding-bottom: 20px !important;
+    }
 
     
   }

@@ -179,7 +179,7 @@ class PerfilView extends Component {
           <h2>Tus Alumnos</h2>
           <div className='listado-mis-cursos'>
           {this.state.alumnos.map((alumno, index) => (
-            <div key={index} className='Comentario'>
+            <div key={index} className='Comentario Comentario2'>
               <div className='comentario-info'>
               <p className='comentario-p'>Curso de: <span>{alumno.curso}</span></p>
                 <p className='comentario-p'>Nombre: <span>{alumno.nombre}</span></p>
