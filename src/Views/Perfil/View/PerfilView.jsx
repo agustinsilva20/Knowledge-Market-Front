@@ -72,7 +72,6 @@ class PerfilView extends Component {
 
       this.setState({ cursos: cursosActualizados });
 
-    console.log(cursosActualizados)
     
   };
 
@@ -124,6 +123,25 @@ class PerfilView extends Component {
     const alumnosFiltrados = this.state.alumnos.filter(alumno => alumno.id !== idAlumnoAEliminar);
     this.setState({alumnos : alumnosFiltrados})
   }
+
+  modificarAlumno = (idAlumno, estado) => {
+    const alumnosNuevos = {
+      
+    }
+    const datoNuevo = {estado: estado}
+    let alumnosActualizados = this.state.alumnos
+
+    alumnosActualizados = alumnosActualizados.map(
+      alumno => {
+        if (alumno.id === idAlumno) {
+          return { ...alumno, ...datoNuevo };
+        }
+        return alumno;
+      }
+      );
+
+      this.setState({ alumnos: alumnosActualizados });
+  }
   
 
   render() {
@@ -165,13 +183,20 @@ class PerfilView extends Component {
               <div className='comentario-info'>
                 <p className='comentario-p'>Nombre: <span>{alumno.nombre}</span></p>
                 <p className='comentario-p'>Telefono: <span>{alumno.telefono}</span></p>
-                <p className='comentario-p'>Mail: <span>{alumno.estado}</span></p>
+                <p className='comentario-p'>Mail: <span>{alumno.mail}</span></p>
                 <p className='comentario-p'>Estado: <span>{alumno.estado}</span></p>
               </div>
               {
                 alumno.estado === "SOLICITADO" ? <div className="acciones-alumnos">
                 <div onClick={()=> this.rechazarAlumno(alumno.id)}><Boton text="Rechazar Alumno"/></div>
-                <div><Boton text="Aceptar Alumno"/></div>
+                <div onClick={()=> this.modificarAlumno(alumno.id, "ACEPTADO")}><Boton text="Aceptar Alumno"/></div>
+              </div>:
+              null
+              }
+
+              {
+                alumno.estado === "ACEPTADO" ? <div className="acciones-alumnos">
+                <div onClick={()=> this.modificarAlumno(alumno.id, "FINALIZADO")}><Boton text="Finalizar Cursada"/></div>
               </div>:
               null
               }
