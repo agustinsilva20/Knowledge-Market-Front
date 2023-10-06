@@ -10,6 +10,7 @@ class InfoCurso extends Component {
     this.state = {
         comentarios : this.props.curso.comentarios,
         nombreInput: '',
+        nombre2Input: '',
         calificacionInput: '',
         comentarioInput: '',
         error:"",
@@ -89,6 +90,9 @@ class InfoCurso extends Component {
         this.setState({contrado: true})
         this.setState({ error: "" })
         this.setState({ comentarioInput: "" })
+        this.setState({ telefonoInput: "" })
+        this.setState({ horarioInput: "" })
+        this.setState({ nombreInput: "" })
       }
   }
 
@@ -148,6 +152,7 @@ class InfoCurso extends Component {
         <Input value={this.state.comentarioInput} onChange={this.comentario_handleChange} placeholder="Mensaje" type="text"/>
         <p className='error'>{this.state.error}</p>
         <div className='boton-enviar-comentario' onClick={()=> this.contratar()}><Boton text= "Contratar"></Boton></div>
+        {this.state.contrado?<p>El profesor recibio tu solicitud. Se comunicara proximamente</p>:null}
         
       </div>
 
