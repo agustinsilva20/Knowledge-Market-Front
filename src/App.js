@@ -15,6 +15,7 @@ import Perfil from './Views/Perfil/Perfil';
 import Modal from './Components/Modal/Modal';
 
 import cursosData from './mockdata.json'; // Importa el JSON
+import Recuperar from './Views/Recuperar/Recuperar';
 
 
 
@@ -97,6 +98,7 @@ class App extends Component {
           <Routes>
             <Route path="/" element={<Institucional handleSelectChange={this.handleSelectChange} selectedOption={this.state.selectedOption}/>} />
             <Route path="/login" element={<Login />}  />
+            <Route path="/recuperar" element={<Recuperar />}  />
             <Route path="/registro" element={<Registro />}  />
             <Route path="/moreinfo" element={<MoreInfo />}  />
             <Route path="/anuncios" element={<Anuncios handleSelectChange={this.handleSelectChange} selectedOption={this.state.selectedOption} cursos = {this.state.cursos} handleTipoChange={this.handleTipoChange} handleFrecuenciaChange={this.handleFrecuenciaChange} handleCalificacionChange={this.handleCalificacionChange} selectedTipo={this.state.selectedTipo} selectedFrecuencia={this.state.selectedFrecuencia} selectedCalificacion={this.state.selectedCalificacion} setModal = {this.setModal} agregarCurso={this.agregarCurso}/>}  />

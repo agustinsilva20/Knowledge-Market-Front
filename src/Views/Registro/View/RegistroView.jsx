@@ -94,7 +94,7 @@ class LoginView extends Component {
           </form>
             
           <div className='centrar btn-login'>
-            <Boton text="Iniciar Sesion" handleClick = {this.registrarse_action}/>
+            <Boton text="Registrarse" handleClick = {this.registrarse_action}/>
           </div>
 
           <h5>¿Ya tenes cuenta? <span><a href="/login">Inicia Sesion</a></span></h5>
