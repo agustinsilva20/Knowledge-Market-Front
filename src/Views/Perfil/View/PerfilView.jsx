@@ -162,7 +162,6 @@ class PerfilView extends Component {
           {this.state.comentarios.map((comentario, index) => (
             <div key={index} className='Comentario'>
               <div className='comentario-info'>
-              <p className='comentario-p'>ID: <span>{comentario.id_comentario}</span></p>
                 <p className='comentario-p'>Nombre: <span>{comentario.nombre}</span></p>
                 <p className='comentario-p'>Comentario: <span>{comentario.comentario}</span></p>
                 <p className='comentario-p'>Calificación: <span>{comentario.calificacion}</span></p>

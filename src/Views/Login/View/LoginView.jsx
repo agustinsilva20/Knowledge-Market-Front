@@ -39,7 +39,8 @@ class LoginView extends Component {
           </form>
 
           <div className='centrar btn-login'>
-            <Boton text="Iniciar Sesion"/>
+            <a href="/perfil"><Boton text="Iniciar Sesion"/></a>
+            
           </div>
 
           <h5>¿Sos nuevo? <span><a href="/registro">Registrate</a></span> y publica tus servicios</h5>
