@@ -5,7 +5,6 @@ import Input from '../../../Components/Input/Input';
 
 // Importo endpoint
 import {login} from "../../../Controller/login.controller";
-import {Redirect} from "react-router-dom";
 
 
 class LoginView extends Component {

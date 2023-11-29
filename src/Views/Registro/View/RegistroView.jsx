@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { useNavigate } from "react-router-dom";
 
 import Boton from '../../../Components/Boton/Boton';
 import Input from '../../../Components/Input/Input';
+
+// Importo endpoint
+import {register} from "../../../Controller/login.controller";
 
 class LoginView extends Component {
     
@@ -66,14 +68,44 @@ class LoginView extends Component {
             this.setState({ error: "Error: Las contrasenas deben coincidir." })
         }
         
-        else{
-            this.setState({ error: "" })
-            window.location.replace("/moreinfo")
-            
-        }
+      
        
       }
+    
+      register = async () => {
+        this.registrarse_action()
+        let dto = {
+          nombre: this.state.userInput,
+          correo: this.state.correo,
+          telefono: this.state.telefono,
+          password:this.state.passwordInput,
+          password2:this.state.password2Input
+        }
 
+        console.log(dto)
+
+        if (dto.nombre != "" && dto.correo != "" && dto.telefono != "" && dto.password != "" && dto.password2 != "")
+        {
+          this.setState({error: ""});
+          let response = await register(dto);
+
+          if (response.rdo === 1)
+          {
+              this.setState({error: response.message});
+          }
+          else{
+             this.setState({error: ""})
+             this.redirect();
+          }
+    
+        }
+       
+        
+      }
+
+      redirect= ()=>{
+          window.location.replace("/moreinfo")
+      } 
     
 
     render() {
@@ -94,7 +126,7 @@ class LoginView extends Component {
           </form>
             
           <div className='centrar btn-login'>
-            <Boton text="Registrarse" handleClick = {this.registrarse_action}/>
+            <Boton text="Registrarse" handleClick = {this.register}/>
           </div>
 
           <h5>¿Ya tenes cuenta? <span><a href="/login">Inicia Sesion</a></span></h5>
