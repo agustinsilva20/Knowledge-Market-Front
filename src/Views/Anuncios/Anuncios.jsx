@@ -20,6 +20,7 @@ class Anuncios extends Component {
               selectedCalificacion={this.props.selectedCalificacion}
               setModal = {this.props.setModal}
               agregarCurso= {this.props.agregarCurso}
+              loadCursos = {this.props.loadCursos}
             /> } />
       </div>
     );

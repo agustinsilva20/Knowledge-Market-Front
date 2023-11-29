@@ -10,15 +10,15 @@ class Card extends Component {
       <div className='card'>
         <img src={"./src/" + this.props.curso.categoria + ".jpg"} alt="src" />
           <br /><br />
-          <h4>Clase de <span>{this.props.curso.categoria}</span> </h4>
+          <h4>Clase de <span>{this.props.curso.Categoria}</span> </h4>
           <div className='card-info'>
             <div className="left">
-                <h6>Profesor: <span>{this.props.curso.profesor}</span></h6>
+                <h6>Profesor: <span>{this.props.curso.Nombre}</span></h6>
                 <h6>Calificación: <span>{this.props.curso.calificacion}/5</span></h6>
-                <h6>Frecuencia: <span>{this.props.curso.frecuencia} Veces por semana</span></h6>
-                <h6>Tipo: <span>{this.props.curso.tipo}</span></h6></div>
+                <h6>Frecuencia: <span>{this.props.curso.FrecuenciaSemanal} Veces por semana</span></h6>
+                <h6>Tipo: <span>{this.props.curso.Modalidad}</span></h6></div>
             <div className="right">
-                <h4>${this.props.curso.precio}</h4>
+                <h4>${this.props.curso.Precio}</h4>
             </div>
           </div>
           

@@ -30,7 +30,7 @@ class App extends Component {
         selectedCalificacion: 'ALL',
         showModal: false,
         modalElem: "",
-        cursos: cursosData.cursos
+        cursos: [] //cursosData.cursos
 
     };
   }
@@ -49,6 +49,12 @@ class App extends Component {
   handleCalificacionChange = (event) => {
     this.setState({ selectedCalificacion: event.target.value });
   };
+
+  loadCursos = (newcursos) => {
+    console.log("cambiando cursos")
+    this.setState({ cursos: newcursos });
+    console.log(this.state.cursos)
+  }
 
   setModal = (estado, elem) =>{
     console.log("Modal")
@@ -101,7 +107,7 @@ class App extends Component {
             <Route path="/recuperar" element={<Recuperar />}  />
             <Route path="/registro" element={<Registro />}  />
             <Route path="/moreinfo" element={<MoreInfo />}  />
-            <Route path="/anuncios" element={<Anuncios handleSelectChange={this.handleSelectChange} selectedOption={this.state.selectedOption} cursos = {this.state.cursos} handleTipoChange={this.handleTipoChange} handleFrecuenciaChange={this.handleFrecuenciaChange} handleCalificacionChange={this.handleCalificacionChange} selectedTipo={this.state.selectedTipo} selectedFrecuencia={this.state.selectedFrecuencia} selectedCalificacion={this.state.selectedCalificacion} setModal = {this.setModal} agregarCurso={this.agregarCurso}/>}  />
+            <Route path="/anuncios" element={<Anuncios loadCursos={this.loadCursos} handleSelectChange={this.handleSelectChange} selectedOption={this.state.selectedOption} cursos = {this.state.cursos} handleTipoChange={this.handleTipoChange} handleFrecuenciaChange={this.handleFrecuenciaChange} handleCalificacionChange={this.handleCalificacionChange} selectedTipo={this.state.selectedTipo} selectedFrecuencia={this.state.selectedFrecuencia} selectedCalificacion={this.state.selectedCalificacion} setModal = {this.setModal} agregarCurso={this.agregarCurso}/>}  />
             <Route path="/perfil" element={<Perfil setModal={this.setModal}/>}  />
           </Routes>
         </Router>

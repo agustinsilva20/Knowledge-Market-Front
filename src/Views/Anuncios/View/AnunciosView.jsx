@@ -6,6 +6,8 @@ import Card from "../../../Components/Card/Card";
 import Boton from '../../../Components/Boton/Boton';
 import CrearAnuncio from '../../CrearAnuncio/CrearAnuncio';
 
+import {listarAnuncios} from "../../../Controller/anuncios.controller";
+
 
 class InstitucionalView extends Component {
 
@@ -15,7 +17,12 @@ class InstitucionalView extends Component {
       cursosFiltrados:this.filtrar("ALL", "ALL", "ALL", "ALL")
     };
   }
-  
+ 
+  componentDidMount() {
+    // Llama a la función fetch_cursos cuando el componente se monta.
+    this.fetch_cursos();
+  }
+
   create_anuncios = () => {
     this.props.setModal(true,<CrearAnuncio agregarCurso={this.props.agregarCurso}/>)
   }
@@ -128,9 +135,23 @@ class InstitucionalView extends Component {
 
   }
 
+  fetch_cursos = async () => {
+      let response = await listarAnuncios();
+      // Agrego los cursos
+      let lista = response.message;
+      this.props.loadCursos(lista)
+      let tipos = this.props.selectedTipo
+      let categoria =this.props.selectedOption
+      let frecuencia = this.props.selectedFrecuencia
+      let calificacion = this.props.selectedCalificacion
+      let filtro = this.filtrar(categoria, tipos, frecuencia, calificacion)
+      this.setState({
+        cursosFiltrados: filtro
+      })
 
+  }
   render() {
-
+  
     const opciones = [
       { value: 'ALL', label: 'Todas las categorias' },
       { value: 'MUSICA', label: 'Musica' },
