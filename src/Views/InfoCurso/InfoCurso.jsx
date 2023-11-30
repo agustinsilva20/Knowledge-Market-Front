@@ -5,7 +5,7 @@ import Boton from "../../Components/Boton/Boton";
 import Input from '../../Components/Input/Input';
 
 import {contratar} from "../../Controller/alumnos.controller";
-import {calificar, estadoComentario} from "../../Controller/calificaciones.controller";
+import {calificar, getCalificacionesCurso} from "../../Controller/calificaciones.controller";
 class InfoCurso extends Component {
   constructor(props) {
     super(props);
@@ -121,17 +121,21 @@ class InfoCurso extends Component {
     this.setState({ horarioInput: event.target.value });
     
   };
+
+  async componentDidMount(){
+    console.log("props",this.props.curso)
+    const comentarios = await getCalificacionesCurso(this.props.curso.CursoID)
+    this.setState({comentarios : comentarios.message})
+  }
   
   render() {
     const comentarios = this.state.comentarios.map((comentario, index) => (
       <div key={index} className='Comentario'>
         <div className='comentario-info'>
-        <p className='comentario-p'>ID: <span>{comentario.id_comentario}</span></p>
-          <p className='comentario-p'>Nombre: <span>{comentario.nombre}</span></p>
-          <p className='comentario-p'>Comentario: <span>{comentario.comentario}</span></p>
-          <p className='comentario-p'>Calificación: <span>{comentario.calificacion}</span></p>
+          <p className='comentario-p'>Nombre: <span>{comentario.Nombre}</span></p>
+          <p className='comentario-p'>Comentario: <span>{comentario.Comentario}</span></p>
+          <p className='comentario-p'>Calificación: <span>{comentario.Calificacion}</span></p>
         </div>
-        <div className='eliminar-comentario' onClick={()=> this.eliminarComentario(comentario.id_comentario)}>Eliminar Comentario</div>
       </div>
     ));
     
