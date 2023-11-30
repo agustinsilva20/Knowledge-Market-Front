@@ -4,6 +4,8 @@ import Input from '../../Components/Input/Input';
 import Boton from '../../Components/Boton/Boton';
 import Dropdown from '../../Components/Dropdown/Dropdown';
 
+import {crearAnuncio} from '../../Controller/anuncios.controller';
+
 class CrearAnuncio extends Component {
   constructor(props) {
     super(props);
@@ -44,15 +46,37 @@ class CrearAnuncio extends Component {
     this.setState({ descripcionInput: event.target.value });
   };
 
-  crear_anuncio =() => {
-    if (this.state.categoriaInput=="" || this.state.frecuenciaInput=="" || this.state.tipoInput=="" || this.state.precioInput=="" || this.state.duracionInput=="" || this.state.descripcionInput=="" || this.state.categoriaInput=="VACIO"|| this.state.frecuenciaInputput=="VACIO"|| this.state.tipoInput=="VACIO" ){
+  crear_anuncio = async () => {
+    if (this.state.categoriaInput==="" || this.state.frecuenciaInput===""  || this.state.tipoInput===""  || this.state.precioInput===""  || this.state.duracionInput===""  || this.state.descripcionInput===""  || this.state.categoriaInput==="VACIO"|| this.state.frecuenciaInputput==="VACIO"|| this.state.tipoInput==="VACIO" ){
       this.setState({error:"Todos los campos son obligatorios"})
       this.setState({exito:""})
     }
     else{
       this.setState({error:""})
-      this.setState({exito:"Curso caragado con exito"})
-      this.props.agregarCurso(this.state);
+      //this.setState({exito:"Curso caragado con exito"})
+      //this.props.agregarCurso(this.state);
+      let dto = {
+        categoria: this.state.categoriaInput,
+        frecuencia: this.state.frecuenciaInput,
+        veces: this.state.duracionInput,
+        modalidad: this.state.tipoInput,
+        descripcion: this.state.descripcionInput,
+        precio: this.state.precioInput
+      }
+      console.log("el dto", dto)
+      let response = await crearAnuncio(dto)
+      if (response.rdo === 1)
+          {
+              this.setState({error: response.message});
+          }
+          else{
+            //this.props.agregarCurso(this.state);
+            this.setState({exito:"Curso caragado con exito"})
+            this.props.fetch_cursos();
+          }
+
+
+      
     }
     
   }

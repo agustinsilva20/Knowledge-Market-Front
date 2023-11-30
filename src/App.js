@@ -52,7 +52,9 @@ class App extends Component {
 
   loadCursos = (newcursos) => {
     console.log("cambiando cursos")
-    this.setState({ cursos: newcursos });
+    this.setState({ cursos: newcursos }, () => {
+      console.log('Estado actualizado:', this.state.cursos);
+    });
     console.log(this.state.cursos)
   }
 

@@ -1,15 +1,15 @@
 const urlApi = "http://localhost:8080/api/";
 
 const urlWebServices = {
-    login : urlApi + "login",
-    register : urlApi + "crearcuenta",
+    login : urlApi + "login", // Done 
+    register : urlApi + "crearcuenta", // Done
 
-    crearAnuncio: urlApi + "crearanuncio",
+    crearAnuncio: urlApi + "crearanuncio", //Done
     eliminarAnuncio: urlApi + "eliminaranuncio",
     despublicarAnuncio: urlApi + "despublicaranuncio",
     republicarAnuncio: urlApi + "republicaranuncio",
     updateAnuncio: urlApi + "updateanuncio",
-    getAnuncios: urlApi + "getanuncios",
+    getAnuncios: urlApi + "getanuncios", // Done
     getAnuncioInfo: urlApi + "getanuncioinfo/",
     getAnuncioByProfesor: urlApi + "getanuncioByProfesor/",
 

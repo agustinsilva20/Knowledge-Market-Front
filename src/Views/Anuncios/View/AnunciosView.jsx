@@ -15,6 +15,7 @@ class InstitucionalView extends Component {
     super(props);
     this.state = {
       cursosFiltrados:this.filtrar("ALL", "ALL", "ALL", "ALL")
+
     };
   }
  
@@ -23,9 +24,7 @@ class InstitucionalView extends Component {
     this.fetch_cursos();
   }
 
-  create_anuncios = () => {
-    this.props.setModal(true,<CrearAnuncio agregarCurso={this.props.agregarCurso}/>)
-  }
+  
   handleSelectChange =(event) => {
     this.props.handleSelectChange(event)
     let categoria = event.target.value /*Este asi por el asincronismo del setstate*/
@@ -138,8 +137,9 @@ class InstitucionalView extends Component {
   fetch_cursos = async () => {
       let response = await listarAnuncios();
       // Agrego los cursos
+      console.log("fetchinggg")
       let lista = response.message;
-      this.props.loadCursos(lista)
+      await this.props.loadCursos(lista)
       let tipos = this.props.selectedTipo
       let categoria =this.props.selectedOption
       let frecuencia = this.props.selectedFrecuencia
@@ -150,6 +150,11 @@ class InstitucionalView extends Component {
       })
 
   }
+
+  create_anuncios = () => {
+    this.props.setModal(true,<CrearAnuncio agregarCurso={this.props.agregarCurso} fetch_cursos={this.fetch_cursos}/>)
+  }
+
   render() {
   
     const opciones = [
