@@ -121,6 +121,11 @@ class PerfilView extends Component {
     this.setState({comentarios : comentariosFiltrados})
   }
 
+  aceptarComentario = (idComentarioAEliminar) => {
+    const comentariosFiltrados = this.state.comentarios.filter(comentario => comentario.id_comentario !== idComentarioAEliminar);
+    this.setState({comentarios : comentariosFiltrados})
+  }
+
   rechazarAlumno = (idAlumnoAEliminar) => {
     //const alumnosFiltrados = this.state.alumnos.filter(alumno => alumno.id !== idAlumnoAEliminar);
     //this.setState({alumnos : alumnosFiltrados})
@@ -191,7 +196,13 @@ class PerfilView extends Component {
                 <p className='comentario-p'>Calificación: <span>{comentario.Calificacion}</span></p>
                 <p className='comentario-p'>Estado: <span>{comentario.Estado}</span></p>
               </div>
-              <div className='eliminar-comentario' onClick={()=> this.eliminarComentario(comentario.id_comentario)}>Aceptar</div>
+              
+              {comentario.Estado === 'PENDIENTE' && (
+                  <div className='eliminar-comentario' onClick={() => this.aceptarComentario(comentario.id_comentario)}>
+                    Aceptar
+                  </div>
+              )}
+
               <div className='eliminar-comentario' onClick={()=> this.eliminarComentario(comentario.id_comentario)}>Eliminar Comentario</div>
             </div>
           ))}
