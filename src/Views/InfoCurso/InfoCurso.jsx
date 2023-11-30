@@ -5,7 +5,7 @@ import Boton from "../../Components/Boton/Boton";
 import Input from '../../Components/Input/Input';
 
 import {contratar} from "../../Controller/alumnos.controller";
-import {calificar} from "../../Controller/calificaciones.controller";
+import {calificar, estadoComentario} from "../../Controller/calificaciones.controller";
 class InfoCurso extends Component {
   constructor(props) {
     super(props);

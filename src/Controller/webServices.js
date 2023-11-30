@@ -13,10 +13,10 @@ const urlWebServices = {
     getAnuncioInfo: urlApi + "getanuncioinfo/",
     getAnuncioByProfesor: urlApi + "getanunciosByProfesor", // Done
 
-    getCalificaciones: urlApi + "getcalificaciones", // Desarrollo
-    createCalificacion: urlApi + "createcalificacion/", // Desarrollo
-    aceptarCalificacion : urlApi + "aceptarcalificacion/",
-    rechazarCalificacion : urlApi + "rechazarcalificacion/",
+    getCalificaciones: urlApi + "getcalificaciones", // Done
+    createCalificacion: urlApi + "createcalificacion/", // Done
+    aceptarCalificacion : urlApi + "aceptarcalificacion/", // Done
+    rechazarCalificacion : urlApi + "rechazarcalificacion/", // Done
 
     contratarCurso : urlApi + "contratarcurso/", // Done
     aceptarAlumno : urlApi + "aceptaralumno/", // Done

@@ -82,3 +82,51 @@ export const calificar = async function(idCurso, dto){
         console.log("error",error);
     };
 }
+
+
+export const estadoComentario = async function(idComentario, estado){
+    //URLS
+    let url_aceptar = urlWebServices.aceptarCalificacion + idComentario ;
+    let url_rechazar = urlWebServices.rechazarCalificacion + idComentario ;
+
+    let url = ""
+    if (estado === "ACEPTAR") {
+        url = url_aceptar
+    }
+    else{
+        url = url_rechazar
+    }
+// Envio la peticion
+try{
+    let response = await fetch(url, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Accept": "application/x-www-form-urlencoded",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Origin": "http://localhost:3000",
+            "x-access-token": localStorage.getItem('x')
+        }
+
+    })
+    let rdo = response.status;
+    let data = await response.json();
+
+    switch (rdo){
+        case 200:
+            {
+                console.log(data.message)             
+                return ({rdo:0,message:data.message});//correcto
+            }
+        default:
+                {
+                    //otro error
+                    return ({rdo:1,message:data.message});                
+                }
+    }
+}
+catch(error)
+{
+    console.log("error",error);
+};
+}

@@ -8,7 +8,7 @@ import ModificarAnuncios from '../../ModificarAnuncios/ModificarAnuncios';
 
 import {getMisCursos, EliminarAnuncio, DespublicarAnuncio, RepublicarAnuncio} from '../../../Controller/perfil.controller';
 import {getAlumnos, changeEstadoAnuncio} from '../../../Controller/alumnos.controller';
-import {getCalificaciones} from '../../../Controller/calificaciones.controller';
+import {getCalificaciones, estadoComentario} from '../../../Controller/calificaciones.controller';
 
 
 class PerfilView extends Component {
@@ -117,13 +117,17 @@ class PerfilView extends Component {
   }
 
   eliminarComentario = (idComentarioAEliminar) => {
-    const comentariosFiltrados = this.state.comentarios.filter(comentario => comentario.id_comentario !== idComentarioAEliminar);
-    this.setState({comentarios : comentariosFiltrados})
+    //const comentariosFiltrados = this.state.comentarios.filter(comentario => comentario.id_comentario !== idComentarioAEliminar);
+    //this.setState({comentarios : comentariosFiltrados})
+    estadoComentario(idComentarioAEliminar, "RECHAZAR")
+    this.obtenerCalificaciones()
   }
 
   aceptarComentario = (idComentarioAEliminar) => {
-    const comentariosFiltrados = this.state.comentarios.filter(comentario => comentario.id_comentario !== idComentarioAEliminar);
-    this.setState({comentarios : comentariosFiltrados})
+    //const comentariosFiltrados = this.state.comentarios.filter(comentario => comentario.id_comentario !== idComentarioAEliminar);
+    //this.setState({comentarios : comentariosFiltrados})
+    estadoComentario(idComentarioAEliminar, "ACEPTAR")
+    this.obtenerCalificaciones()
   }
 
   rechazarAlumno = (idAlumnoAEliminar) => {
@@ -198,12 +202,12 @@ class PerfilView extends Component {
               </div>
               
               {comentario.Estado === 'PENDIENTE' && (
-                  <div className='eliminar-comentario' onClick={() => this.aceptarComentario(comentario.id_comentario)}>
+                  <div className='eliminar-comentario' onClick={() => this.aceptarComentario(comentario.ComentarioID)}>
                     Aceptar
                   </div>
               )}
 
-              <div className='eliminar-comentario' onClick={()=> this.eliminarComentario(comentario.id_comentario)}>Eliminar Comentario</div>
+              <div className='eliminar-comentario' onClick={()=> this.eliminarComentario(comentario.ComentarioID)}>Eliminar Comentario</div>
             </div>
           ))}
           </div>
