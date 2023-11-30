@@ -118,10 +118,15 @@ class PerfilView extends Component {
     //const alumnosFiltrados = this.state.alumnos.filter(alumno => alumno.id !== idAlumnoAEliminar);
     //this.setState({alumnos : alumnosFiltrados})
     changeEstadoAnuncio("rechazado",idAlumnoAEliminar)
+    this.obtenerAlumnosMios()
 
   }
 
   modificarAlumno = (idAlumno, estado) => {
+
+    changeEstadoAnuncio(estado,idAlumno)
+    this.obtenerAlumnosMios()
+    /* 
     const alumnosNuevos = {
       
     }
@@ -138,6 +143,7 @@ class PerfilView extends Component {
       );
 
       this.setState({ alumnos: alumnosActualizados });
+      */
   }
   modificar_anuncios = (curso) => {
     this.props.setModal(true,<ModificarAnuncios editarCurso={this.editarCurso} curso = {curso} obtenerCursosMios = {this.obtenerCursosMios}/>)
@@ -200,14 +206,14 @@ class PerfilView extends Component {
               {
                 alumno.Estado === "PENDIENTE" ? <div className="acciones-alumnos">
                 <div onClick={()=> this.rechazarAlumno(alumno.ContratacionID)}><Boton text="Rechazar Alumno"/></div>
-                <div onClick={()=> this.modificarAlumno(alumno.ContratacionID, "ACEPTADO")}><Boton text="Aceptar Alumno"/></div>
+                <div onClick={()=> this.modificarAlumno(alumno.ContratacionID, "aceptar")}><Boton text="Aceptar Alumno"/></div>
               </div>:
               null
               }
 
               {
-                alumno.estado === "ACEPTADO" ? <div className="acciones-alumnos">
-                <div onClick={()=> this.modificarAlumno(alumno.ContratacionID, "FINALIZADO")}><Boton text="Finalizar Cursada"/></div>
+                alumno.Estado === "ACTIVO" ? <div className="acciones-alumnos">
+                <div onClick={()=> this.modificarAlumno(alumno.ContratacionID, "fin")}><Boton text="Finalizar Cursada"/></div>
               </div>:
               null
               }

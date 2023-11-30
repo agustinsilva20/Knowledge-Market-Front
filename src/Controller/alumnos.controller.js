@@ -91,12 +91,13 @@ export const changeEstadoAnuncio = async function(estado, idalumno){
     // URL
     let url_aceptar = urlWebServices.aceptarAlumno + idalumno;
     let url_rechazar = urlWebServices.rechazarAlumno + idalumno;
-    let url_fin = urlWebServices.finalizaralumno + idalumno;
+    let url_fin = urlWebServices.finalizarAlumno + idalumno;
     // Envio la peticion
     try{
         let url = ""
         if (estado === "fin"){
             url = url_fin;
+            console.log("la url es", url)
         }
         else if (estado == "aceptar"){
             url = url_aceptar;
