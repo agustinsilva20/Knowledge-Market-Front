@@ -185,17 +185,18 @@ class PerfilView extends Component {
       <div className='perfil-div'>
           <h2>Tus Alumnos</h2>
           <div className='listado-mis-cursos'>
+          {console.log("alumno", this.state.alumnos)}
           {this.state.alumnos.map((alumno, index) => (
+            
             <div key={index} className='Comentario Comentario2'>
               <div className='comentario-info'>
-              <p className='comentario-p'>Curso de: <span>{alumno.curso}</span></p>
-                <p className='comentario-p'>Nombre: <span>{alumno.nombre}</span></p>
-                <p className='comentario-p'>Telefono: <span>{alumno.telefono}</span></p>
-                <p className='comentario-p'>Mail: <span>{alumno.mail}</span></p>
-                <p className='comentario-p'>Estado: <span>{alumno.estado}</span></p>
+              <p className='comentario-p'>Curso de: <span>{alumno.Categoria}</span></p>
+                <p className='comentario-p'>Nombre: <span>{alumno.Nombre}</span></p>
+                <p className='comentario-p'>Telefono: <span>{alumno.Telefono}</span></p>
+                <p className='comentario-p'>Estado: <span>{alumno.Estado}</span></p>
               </div>
               {
-                alumno.estado === "SOLICITADO" ? <div className="acciones-alumnos">
+                alumno.Estado === "PENDIENTE" ? <div className="acciones-alumnos">
                 <div onClick={()=> this.rechazarAlumno(alumno.id)}><Boton text="Rechazar Alumno"/></div>
                 <div onClick={()=> this.modificarAlumno(alumno.id, "ACEPTADO")}><Boton text="Aceptar Alumno"/></div>
               </div>:

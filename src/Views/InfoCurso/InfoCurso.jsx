@@ -4,6 +4,7 @@ import './InfoCurso.css';
 import Boton from "../../Components/Boton/Boton";
 import Input from '../../Components/Input/Input';
 
+import {contratar} from "../../Controller/alumnos.controller";
 class InfoCurso extends Component {
   constructor(props) {
     super(props);
@@ -88,6 +89,15 @@ class InfoCurso extends Component {
         this.setState({error:"El telefono debe tener al menos 8 caracteres y deben ser todos números"})
       }
       else{
+        // Llamo a la API
+        let dto = {
+          nombre: nombre,
+          telefono: telefono,
+          horario: horario,
+          mensaje: mensaje
+        }
+        console.log("asdd", this.props.curso)
+        contratar(this.props.curso.CursoID, dto)
         this.setState({contrado: true})
         this.setState({ error: "" })
         this.setState({ comentarioInput: "" })

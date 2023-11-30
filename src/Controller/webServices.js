@@ -18,7 +18,7 @@ const urlWebServices = {
     aceptarCalificacion : urlApi + "aceptarcalificacion/",
     rechazarCalificacion : urlApi + "rechazarcalificacion/",
 
-    contratarCurso : urlApi + "contratarcurso/",
+    contratarCurso : urlApi + "contratarcurso/", // En development
     aceptarAlumno : urlApi + "aceptaralumno/",
     rechazarAlumno: urlApi + "rechazaralumno/",
     finalizarAlumno : urlApi + "finalizaralumno/",
