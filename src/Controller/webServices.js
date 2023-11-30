@@ -18,12 +18,12 @@ const urlWebServices = {
     aceptarCalificacion : urlApi + "aceptarcalificacion/",
     rechazarCalificacion : urlApi + "rechazarcalificacion/",
 
-    contratarCurso : urlApi + "contratarcurso/", // En development
-    aceptarAlumno : urlApi + "aceptaralumno/",
-    rechazarAlumno: urlApi + "rechazaralumno/",
-    finalizarAlumno : urlApi + "finalizaralumno/",
+    contratarCurso : urlApi + "contratarcurso/", // Done
+    aceptarAlumno : urlApi + "aceptaralumno/", //desarrollo
+    rechazarAlumno: urlApi + "rechazaralumno/", //desarrollo
+    finalizarAlumno : urlApi + "finalizaralumno/", //desarrollo
     alumnosPendientes : urlApi + "alumnospendientes", // No va
-    getAlumnos : urlApi + "getalumnos" // Iniciado
+    getAlumnos : urlApi + "getalumnos" // Done
 
 }
 

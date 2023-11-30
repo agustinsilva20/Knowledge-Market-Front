@@ -7,7 +7,7 @@ import CrearAnuncio from '../../CrearAnuncio/CrearAnuncio';
 import ModificarAnuncios from '../../ModificarAnuncios/ModificarAnuncios';
 
 import {getMisCursos, EliminarAnuncio, DespublicarAnuncio, RepublicarAnuncio} from '../../../Controller/perfil.controller';
-import {getAlumnos} from '../../../Controller/alumnos.controller';
+import {getAlumnos, changeEstadoAnuncio} from '../../../Controller/alumnos.controller';
 
 
 class PerfilView extends Component {
@@ -115,8 +115,10 @@ class PerfilView extends Component {
   }
 
   rechazarAlumno = (idAlumnoAEliminar) => {
-    const alumnosFiltrados = this.state.alumnos.filter(alumno => alumno.id !== idAlumnoAEliminar);
-    this.setState({alumnos : alumnosFiltrados})
+    //const alumnosFiltrados = this.state.alumnos.filter(alumno => alumno.id !== idAlumnoAEliminar);
+    //this.setState({alumnos : alumnosFiltrados})
+    changeEstadoAnuncio("rechazado",idAlumnoAEliminar)
+
   }
 
   modificarAlumno = (idAlumno, estado) => {
@@ -197,15 +199,15 @@ class PerfilView extends Component {
               </div>
               {
                 alumno.Estado === "PENDIENTE" ? <div className="acciones-alumnos">
-                <div onClick={()=> this.rechazarAlumno(alumno.id)}><Boton text="Rechazar Alumno"/></div>
-                <div onClick={()=> this.modificarAlumno(alumno.id, "ACEPTADO")}><Boton text="Aceptar Alumno"/></div>
+                <div onClick={()=> this.rechazarAlumno(alumno.ContratacionID)}><Boton text="Rechazar Alumno"/></div>
+                <div onClick={()=> this.modificarAlumno(alumno.ContratacionID, "ACEPTADO")}><Boton text="Aceptar Alumno"/></div>
               </div>:
               null
               }
 
               {
                 alumno.estado === "ACEPTADO" ? <div className="acciones-alumnos">
-                <div onClick={()=> this.modificarAlumno(alumno.id, "FINALIZADO")}><Boton text="Finalizar Cursada"/></div>
+                <div onClick={()=> this.modificarAlumno(alumno.ContratacionID, "FINALIZADO")}><Boton text="Finalizar Cursada"/></div>
               </div>:
               null
               }
