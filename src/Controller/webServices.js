@@ -11,7 +11,7 @@ const urlWebServices = {
     updateAnuncio: urlApi + "updateanuncio",
     getAnuncios: urlApi + "getanuncios", // Done
     getAnuncioInfo: urlApi + "getanuncioinfo/",
-    getAnuncioByProfesor: urlApi + "getanuncioByProfesor/",
+    getAnuncioByProfesor: urlApi + "getanuncioByProfesor/", // Done
 
     getCalificaciones: urlApi + "getcalificaciones/",
     createCalificacion: urlApi + "createcalificacion/",

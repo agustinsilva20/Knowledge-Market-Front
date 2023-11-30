@@ -30,7 +30,9 @@ export const login = async function(dto){
             case 200:
                 {
                     //guardo token
-                    localStorage.setItem("x",data.token);                   
+                    localStorage.setItem("x",data.token);
+                    localStorage.setItem("id", data.idCuenta.ProfesorID);
+                    localStorage.setItem("correo",data.idCuenta.Correo)                   
                     return ({rdo:0,mensaje:"Ok"});//correcto
                 }
             case 400:
@@ -84,7 +86,8 @@ export const register = async function(dto){
             case 200:
                 {
                     //guardo token
-                    localStorage.setItem("x",data.token);                   
+                    localStorage.setItem("x",data.token);
+                    localStorage.setItem("id", data.idCuenta);                    
                     return ({rdo:0,mensaje:"Ok"});//correcto
                 }
             case 400:
