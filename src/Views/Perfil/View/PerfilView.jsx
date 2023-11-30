@@ -7,6 +7,7 @@ import CrearAnuncio from '../../CrearAnuncio/CrearAnuncio';
 import ModificarAnuncios from '../../ModificarAnuncios/ModificarAnuncios';
 
 import {getMisCursos, EliminarAnuncio, DespublicarAnuncio, RepublicarAnuncio} from '../../../Controller/perfil.controller';
+import {getAlumnos} from '../../../Controller/alumnos.controller';
 
 
 class PerfilView extends Component {
@@ -15,7 +16,8 @@ class PerfilView extends Component {
     this.state = {
         cursos: [],
         showing: "cursos",
-        alumnos:[{nombre:"Alberto", telefono: "1234567890", mail : "uZx2r@example.com", id:1, estado: "SOLICITADO", curso: "Musica"},{nombre:"Juan", telefono: "1234563220", mail : "uZx2eeer@example.com", id:2, estado: "SOLICITADO", curso: "Musica"}],
+        alumnos:[],
+        
         comentarios:[{"id_comentario":1,"nombre": "Carla", "comentario": "Divertida la clase", "calificacion": 4.5}, {"id_comentario":2,"nombre": "Juana", "comentario": "No me gusto", "calificacion": 0}]
     };
   }
@@ -97,6 +99,12 @@ class PerfilView extends Component {
     
   };
 
+  obtenerAlumnosMios = async () => {
+    let alumnosMios = await getAlumnos()
+    console.log("alumnos", alumnosMios)
+    this.setState ({alumnos: alumnosMios.message})
+  }
+
   cambiarShowing = (showing) => {
     this.setState({ showing: showing });
   }
@@ -134,6 +142,7 @@ class PerfilView extends Component {
   }
   componentDidMount() {
     this.obtenerCursosMios()
+    this.obtenerAlumnosMios()
   }
 
 

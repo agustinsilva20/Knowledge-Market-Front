@@ -22,8 +22,8 @@ const urlWebServices = {
     aceptarAlumno : urlApi + "aceptaralumno/",
     rechazarAlumno: urlApi + "rechazaralumno/",
     finalizarAlumno : urlApi + "finalizaralumno/",
-    alumnosPendientes : urlApi + "alumnospendientes",
-    getAlumnos : urlApi + "getalumnos"
+    alumnosPendientes : urlApi + "alumnospendientes", // No va
+    getAlumnos : urlApi + "getalumnos" // Iniciado
 
 }
 
