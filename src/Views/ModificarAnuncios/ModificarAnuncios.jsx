@@ -4,20 +4,22 @@ import Input from '../../Components/Input/Input';
 import Boton from '../../Components/Boton/Boton';
 import Dropdown from '../../Components/Dropdown/Dropdown';
 
+import {updateAnuncio} from '../../Controller/perfil.controller';
+
 class ModificarAnuncios extends Component {
   constructor(props) {
     super(props);
     this.state = {
       estadoInput: 'publicado',
       mioInput: "true",
-      categoriaInput:this.props.curso.categoria,
+      categoriaInput:this.props.curso.Categoria,
       calificacionInput: 0,
       profesorInput: "Juan",
-      frecuenciaInput: this.props.curso.frecuencia,
-      tipoInput: this.props.curso.tipo,
-      precioInput:this.props.curso.precio,
-      duracionInput: this.props.curso.duracion,
-      descripcionInput: this.props.curso.descripcion,
+      frecuenciaInput: this.props.curso.FrecuenciaSemanal,
+      tipoInput: this.props.curso.Modalidad,
+      precioInput:this.props.curso.Precio,
+      duracionInput: this.props.curso.CantidadSemanas,
+      descripcionInput: this.props.curso.Descripcion,
       comentarios:[],
       error:"",
       exito:""
@@ -44,24 +46,39 @@ class ModificarAnuncios extends Component {
     this.setState({ descripcionInput: event.target.value });
   };
 
-  modificar_anuncio =() => {
+  modificar_anuncio = async () => {
     if (this.state.categoriaInput==="" || this.state.frecuenciaInput==="" || this.state.tipoInput==="" || this.state.precioInput==="" || this.state.duracionInput==="" || this.state.descripcionInput==="" || this.state.categoriaInput==="VACIO"|| this.state.frecuenciaInputput==="VACIO"|| this.state.tipoInput==="VACIO" ){
       this.setState({error:"Todos los campos son obligatorios"})
       this.setState({exito:""})
     }
     else{
       this.setState({error:""})
-      this.setState({exito:"Curso modificado con exito"})
+      //this.setState({exito:"Curso modificado con exito"})
       const datosEditados = {
         categoria : this.state.categoriaInput,
         frecuencia : this.state.frecuenciaInput,
-        tipo : this.state.tipoInput,
+        modalidad : this.state.tipoInput,
         precio : this.state.precioInput,
-        duracion : this.state.duracionInput,
+        veces : this.state.duracionInput,
         descripcion : this.state.descripcionInput,
+        cursoID : this.props.curso.CursoID
 
       }
-      this.props.editarCurso(this.props.curso.id, datosEditados);
+      //this.props.editarCurso(this.props.curso.id, datosEditados);
+
+      // Llamo a la API
+      let response = await updateAnuncio(datosEditados)
+      if (response.rdo === 0){
+        this.setState({exito:"Anuncio modificado con exito"})
+        this.setState({error:""})
+        // Actualizo el listado
+        this.props.obtenerCursosMios()
+      }
+      else{
+        this.setState({error:response.message})
+        this.setState({exito:""})
+      }
+
     }
     
   }

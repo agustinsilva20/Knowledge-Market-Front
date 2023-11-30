@@ -203,3 +203,50 @@ export const RepublicarAnuncio = async function(cursoID){
 }
 
 
+export const updateAnuncio = async function(dto){
+// URL
+let url = urlWebServices.updateAnuncio;
+// Armar la peticion
+const formData = new URLSearchParams();
+formData.append("categoria", dto.categoria);
+formData.append("frecuencia", dto.frecuencia);
+formData.append("veces", dto.veces);
+formData.append("modalidad", dto.modalidad);
+formData.append("descripcion", dto.descripcion);
+formData.append("precio", dto.precio);
+formData.append("cursoID", dto.cursoID);
+
+// Envio la peticion
+try{
+    let response = await fetch(url, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Accept": "application/x-www-form-urlencoded",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Origin": "http://localhost:3000",
+            "x-access-token": localStorage.getItem('x')
+        },
+        body: formData
+    })
+    let rdo = response.status;
+    let data = await response.json();
+
+    switch (rdo){
+        case 200:
+            {
+                console.log(data.message)             
+                return ({rdo:0,message:data.message});//correcto
+            }
+ 
+        default:
+            return ({rdo:1,message:data.message});  
+    }
+}
+catch(error)
+{
+    console.log("error",error);
+    return ({rdo:1,message:"Error"});//correcto
+};
+
+}

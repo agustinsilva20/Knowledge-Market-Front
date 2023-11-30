@@ -8,7 +8,7 @@ const urlWebServices = {
     eliminarAnuncio: urlApi + "eliminaranuncio", // Done
     despublicarAnuncio: urlApi + "despublicaranuncio", // Done
     republicarAnuncio: urlApi + "republicaranuncio", // Done
-    updateAnuncio: urlApi + "updateanuncio",
+    updateAnuncio: urlApi + "updateanuncio", // Done
     getAnuncios: urlApi + "getanuncios", // Done
     getAnuncioInfo: urlApi + "getanuncioinfo/",
     getAnuncioByProfesor: urlApi + "getanunciosByProfesor", // Done

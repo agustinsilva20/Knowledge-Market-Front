@@ -46,33 +46,8 @@ class PerfilView extends Component {
   };
 
   editarCurso = (id, datosActualizados) => {
-    /*this.setState(prevState => {
-      console.log('ID del curso a editar:', id);
-      console.log('Datos actualizados:', datosActualizados);
-      
-      const cursosActualizados = prevState.cursos.map(curso => {
-        if (curso.id === id) {
-          return { ...curso, ...datosActualizados };
-        }
-        return curso;
-      });
-      return { cursos: cursosActualizados };
-    });*/
-    const cursosNuevo = {
-      
-    }
-    let cursosActualizados = this.state.cursos
-
-    cursosActualizados = cursosActualizados.map(
-      curso => {
-        if (curso.id === id) {
-          return { ...curso, ...datosActualizados };
-        }
-        return curso;
-      }
-      );
-
-      this.setState({ cursos: cursosActualizados });
+  
+      console.log("Actualizar", datosActualizados)
 
     
   };
@@ -81,9 +56,7 @@ class PerfilView extends Component {
     this.props.setModal(true,<CrearAnuncio agregarCurso={this.agregarCurso}/>)
   }
 
-  modificar_anuncios = (curso) => {
-    this.props.setModal(true,<ModificarAnuncios editarCurso={this.editarCurso} curso = {curso}/>)
-  }
+  
 
   togglePublicado = async (id, estado) => {
     let response = ""
@@ -156,7 +129,9 @@ class PerfilView extends Component {
 
       this.setState({ alumnos: alumnosActualizados });
   }
-  
+  modificar_anuncios = (curso) => {
+    this.props.setModal(true,<ModificarAnuncios editarCurso={this.editarCurso} curso = {curso} obtenerCursosMios = {this.obtenerCursosMios}/>)
+  }
   componentDidMount() {
     this.obtenerCursosMios()
   }
@@ -171,7 +146,7 @@ class PerfilView extends Component {
           {this.state.cursos.map(curso => (
             <div key={curso.cursoID}>
               {console.log("Asd@2222,",curso)}
-              <ListCursos curso={curso} eliminarCurso={this.eliminarCurso} togglePublicado={this.togglePublicado} modificar_anuncios = {this.modificar_anuncios}/>
+              <ListCursos curso={curso} eliminarCurso={this.eliminarCurso} togglePublicado={this.togglePublicado} modificar_anuncios = {this.modificar_anuncios}  />
         
             </div>
           ))}
