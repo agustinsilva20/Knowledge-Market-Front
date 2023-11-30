@@ -6,7 +6,7 @@ import ListCursos from '../../../Components/ListCursos/ListCursos';
 import CrearAnuncio from '../../CrearAnuncio/CrearAnuncio';
 import ModificarAnuncios from '../../ModificarAnuncios/ModificarAnuncios';
 
-import {getMisCursos, EliminarAnuncio} from '../../../Controller/perfil.controller';
+import {getMisCursos, EliminarAnuncio, DespublicarAnuncio, RepublicarAnuncio} from '../../../Controller/perfil.controller';
 
 
 class PerfilView extends Component {
@@ -85,13 +85,19 @@ class PerfilView extends Component {
     this.props.setModal(true,<ModificarAnuncios editarCurso={this.editarCurso} curso = {curso}/>)
   }
 
-  togglePublicado = id => {
-    const cursosActualizados = this.state.cursos.map(curso =>
-      curso.id === id
-        ? { ...curso, estado: curso.estado === 'publicado' ? 'despublicado' : 'publicado' }
-        : curso
-    );
-    this.setState({ cursos: cursosActualizados });
+  togglePublicado = async (id, estado) => {
+    let response = ""
+    if (estado === "NOTPUBLISH") {
+      response = await RepublicarAnuncio(id)
+    }
+    else{
+      response = await DespublicarAnuncio(id)
+    }
+    
+    if (response.rdo === 0){
+      this.obtenerCursosMios();
+    }
+
   };
 
   eliminarCurso = async (id) => {

@@ -16,7 +16,7 @@ class ListCursos extends Component {
                 <div className='listado-acciones'>
                     <div onClick={() => this.props.modificar_anuncios(this.props.curso)}><Boton text="Editar"/></div>
                     <div onClick={() => this.props.eliminarCurso(this.props.curso.CursoID)}><Boton text="Eliminar" estilo={"boton-rojo"}/></div>
-                    <div onClick={() => this.props.togglePublicado(this.props.curso.CursoID)}>
+                    <div onClick={() => this.props.togglePublicado(this.props.curso.CursoID, this.props.curso.Estado)}>
                       {this.props.curso.Estado === "PUBLICADO"?<Boton text="Despublicar" estilo={"boton-rojo-claro"}/>:<Boton text="Publicar"/>}
                     </div>
                     

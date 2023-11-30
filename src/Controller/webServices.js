@@ -6,8 +6,8 @@ const urlWebServices = {
 
     crearAnuncio: urlApi + "crearanuncio", //Done
     eliminarAnuncio: urlApi + "eliminaranuncio", // Done
-    despublicarAnuncio: urlApi + "despublicaranuncio",
-    republicarAnuncio: urlApi + "republicaranuncio",
+    despublicarAnuncio: urlApi + "despublicaranuncio", // Done
+    republicarAnuncio: urlApi + "republicaranuncio", // Done
     updateAnuncio: urlApi + "updateanuncio",
     getAnuncios: urlApi + "getanuncios", // Done
     getAnuncioInfo: urlApi + "getanuncioinfo/",
