@@ -8,7 +8,8 @@ class InfoCurso extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        comentarios : this.props.curso.comentarios,
+        //comentarios : this.props.curso.comentarios,
+        comentarios:[],
         nombreInput: '',
         nombre2Input: '',
         calificacionInput: '',
@@ -165,23 +166,23 @@ class InfoCurso extends Component {
     return (
       
            <div className='infoCurso'>
-            <h2>Clase de <span>{this.props.curso.categoria}</span> </h2>
+            <h2>Clase de <span>{this.props.curso.Categoria}</span> </h2>
             <br /><br /><br />
             <h2 className='text-left'>Descripcion</h2>
-            <p>{this.props.curso.descripcion}</p>
+            <p>{this.props.curso.Descripcion}</p>
             <br /><br />
             <h2 className='text-left'>Informacion</h2>
             <div className='info-curso'>
               <div>
-                  <h5>Profesor: <span>{this.props.curso.profesor}</span>  ({this.props.curso.calificacion}/5 ⭐)</h5>
-                  <h5>Frecuencia: <span>{this.props.curso.frecuencia} Veces por semana</span></h5>
+                  <h5>Profesor: <span>{this.props.curso.profesor}</span>  ({this.props.curso.Calificacion}/5 ⭐)</h5>
+                  <h5>Frecuencia: <span>{this.props.curso.FrecuenciaSemanal} Veces por semana</span></h5>
               </div>
               <div>
-                <h5>Duracion: <span>{this.props.curso.duracion} clases</span></h5>
-                <h5>Tipo: <span>{this.props.curso.tipo}</span></h5>
+                <h5>Duracion: <span>{this.props.curso.CantidadSemanas} clases</span></h5>
+                <h5>Tipo: <span>{this.props.curso.Modalidad}</span></h5>
               </div>
               <div>
-              <h5>Precio: <span>${this.props.curso.precio}</span></h5>
+              <h5>Precio: <span>${this.props.curso.Precio}</span></h5>
                 
               </div>
 
