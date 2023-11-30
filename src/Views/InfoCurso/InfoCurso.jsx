@@ -5,6 +5,7 @@ import Boton from "../../Components/Boton/Boton";
 import Input from '../../Components/Input/Input';
 
 import {contratar} from "../../Controller/alumnos.controller";
+import {calificar} from "../../Controller/calificaciones.controller";
 class InfoCurso extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,7 @@ class InfoCurso extends Component {
 
   }
 
-  agregarComentario = (nombre,comentario,calificacion)=> {
+  agregarComentario = async (nombre,comentario,calificacion)=> {
     if (nombre==""){
       this.setState({error:"El nombre es requerido"})
     }
@@ -42,70 +43,64 @@ class InfoCurso extends Component {
       this.setState({error:"La calificacion es requerida"})
     }
     else{
-      try {
-        calificacion = parseInt(calificacion); // Intenta convertir la cadena a un número entero
-        if (isNaN(calificacion)) {
-          throw new Error("No es un número válido"); // Lanza un error si no es un número
-        }
-        if (calificacion < 0 || calificacion > 5) {
-          this.setState({error:"La calificación debe estar entre 1 y 5"})
-        }
-        else{
-          const id_comentario = this.state.comentarios.length + 1;
-          this.setState({comentarios : [...this.state.comentarios,{id_comentario, nombre,comentario,calificacion}]})
-          this.setState({error:""})
-          this.setState({calificacionInput:""})
-          this.setState({nombreInput:""})
-          this.setState({comentarioInput:""})
-          this.setState({comentarioEnviado:true})
-        }
-        
-      } catch (error) {
-        this.setState({error:"debes ingresar un numero valido"})
-      }
-    }
-    
-  }
-
-  contratar = () => {
-      const nombre = this.state.nombreInput
-      const telefono = this.state.telefonoInput
-      const horario = this.state.horarioInput
-      const mensaje = this.state.comentarioInput
-      const telefonoRegex = /^\d{8,}$/;
-      if(nombre == ""){
-        this.setState({error:"El nombre es requerido"})
-      }
-      else if (telefono == ""){
-        this.setState({error:"El telefono es requerido"})
-      }
-      else if (horario == ""){
-        this.setState({error:"El horario es requerido"})
-      }
-      else if (mensaje == ""){
-        this.setState({error:"El mensaje es requerido"})
-      }
-      else if (telefonoRegex.test(telefono) == false){
-        this.setState({error:"El telefono debe tener al menos 8 caracteres y deben ser todos números"})
-      }
-      else{
-        // Llamo a la API
+      
+      // Llamo a la API
         let dto = {
+          cursoID: this.props.curso.id,
           nombre: nombre,
-          telefono: telefono,
-          horario: horario,
-          mensaje: mensaje
+          calificacion: calificacion,
+          comentario: comentario
         }
-        console.log("asdd", this.props.curso)
-        contratar(this.props.curso.CursoID, dto)
-        this.setState({contrado: true})
-        this.setState({ error: "" })
-        this.setState({ comentarioInput: "" })
-        this.setState({ telefonoInput: "" })
-        this.setState({ horarioInput: "" })
-        this.setState({ nombreInput: "" })
-      }
-  }
+        await calificar(this.props.curso.CursoID, dto)
+        this.setState({error:""})
+        this.setState({calificacionInput:""})
+        this.setState({nombreInput:""})
+        this.setState({comentarioInput:""})
+        this.setState({comentarioEnviado:true})
+        
+        }}
+
+        contratar = () => {
+          const nombre = this.state.nombreInput;
+          const telefono = this.state.telefonoInput;
+          const horario = this.state.horarioInput;
+          const mensaje = this.state.comentarioInput;
+          const telefonoRegex = /^\d{8,}$/;
+        
+          if (nombre === "") {
+            this.setState({ error: "El nombre es requerido" });
+          } else if (telefono === "") {
+            this.setState({ error: "El telefono es requerido" });
+          } else if (horario === "") {
+            this.setState({ error: "El horario es requerido" });
+          } else if (mensaje === "") {
+            this.setState({ error: "El mensaje es requerido" });
+          } else if (telefonoRegex.test(telefono) === false) {
+            this.setState({
+              error: "El telefono debe tener al menos 8 caracteres y deben ser todos números",
+            });
+          } else {
+            // Llamo a la API
+            let dto = {
+              nombre: nombre,
+              telefono: telefono,
+              horario: horario,
+              mensaje: mensaje,
+            };
+        
+            console.log("asdd", this.props.curso);
+      
+            contratar(this.props.curso.CursoID, dto);
+        
+          
+            this.setState({ contrado: true });
+            this.setState({ error: "" });
+            this.setState({ comentarioInput: "" });
+            this.setState({ telefonoInput: "" });
+            this.setState({ horarioInput: "" });
+            this.setState({ nombreInput: "" });
+          }
+        };
 
   nombre_handleChange = (event) => {
     this.setState({ nombreInput: event.target.value });
@@ -121,11 +116,11 @@ class InfoCurso extends Component {
   };
   telefono_handleChange = (event) => {
     this.setState({ telefonoInput: event.target.value });
-  }
+  };
   horario_handleChange = (event) => {
     this.setState({ horarioInput: event.target.value });
     
-  }
+  };
   
   render() {
     const comentarios = this.state.comentarios.map((comentario, index) => (

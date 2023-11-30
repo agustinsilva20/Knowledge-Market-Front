@@ -8,6 +8,7 @@ import ModificarAnuncios from '../../ModificarAnuncios/ModificarAnuncios';
 
 import {getMisCursos, EliminarAnuncio, DespublicarAnuncio, RepublicarAnuncio} from '../../../Controller/perfil.controller';
 import {getAlumnos, changeEstadoAnuncio} from '../../../Controller/alumnos.controller';
+import {getCalificaciones} from '../../../Controller/calificaciones.controller';
 
 
 class PerfilView extends Component {
@@ -18,7 +19,7 @@ class PerfilView extends Component {
         showing: "cursos",
         alumnos:[],
         
-        comentarios:[{"id_comentario":1,"nombre": "Carla", "comentario": "Divertida la clase", "calificacion": 4.5}, {"id_comentario":2,"nombre": "Juana", "comentario": "No me gusto", "calificacion": 0}]
+        comentarios:[]
     };
   }
   agregarCurso = (newCurso) => {
@@ -105,6 +106,12 @@ class PerfilView extends Component {
     this.setState ({alumnos: alumnosMios.message})
   }
 
+  obtenerCalificaciones = async () => {
+    let calificaciones = await getCalificaciones()
+    console.log("calificaciones", calificaciones)
+    this.setState({comentarios: calificaciones.message})
+  }
+
   cambiarShowing = (showing) => {
     this.setState({ showing: showing });
   }
@@ -151,6 +158,7 @@ class PerfilView extends Component {
   componentDidMount() {
     this.obtenerCursosMios()
     this.obtenerAlumnosMios()
+    this.obtenerCalificaciones()
   }
 
 
@@ -178,10 +186,12 @@ class PerfilView extends Component {
           {this.state.comentarios.map((comentario, index) => (
             <div key={index} className='Comentario'>
               <div className='comentario-info'>
-                <p className='comentario-p'>Nombre: <span>{comentario.nombre}</span></p>
-                <p className='comentario-p'>Comentario: <span>{comentario.comentario}</span></p>
-                <p className='comentario-p'>Calificación: <span>{comentario.calificacion}</span></p>
+                <p className='comentario-p'>Nombre: <span>{comentario.Nombre}</span></p>
+                <p className='comentario-p'>Comentario: <span>{comentario.Comentario}</span></p>
+                <p className='comentario-p'>Calificación: <span>{comentario.Calificacion}</span></p>
+                <p className='comentario-p'>Estado: <span>{comentario.Estado}</span></p>
               </div>
+              <div className='eliminar-comentario' onClick={()=> this.eliminarComentario(comentario.id_comentario)}>Aceptar</div>
               <div className='eliminar-comentario' onClick={()=> this.eliminarComentario(comentario.id_comentario)}>Eliminar Comentario</div>
             </div>
           ))}
