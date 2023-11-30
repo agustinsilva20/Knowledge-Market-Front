@@ -5,13 +5,13 @@ const urlWebServices = {
     register : urlApi + "crearcuenta", // Done
 
     crearAnuncio: urlApi + "crearanuncio", //Done
-    eliminarAnuncio: urlApi + "eliminaranuncio",
+    eliminarAnuncio: urlApi + "eliminaranuncio", // Done
     despublicarAnuncio: urlApi + "despublicaranuncio",
     republicarAnuncio: urlApi + "republicaranuncio",
     updateAnuncio: urlApi + "updateanuncio",
     getAnuncios: urlApi + "getanuncios", // Done
     getAnuncioInfo: urlApi + "getanuncioinfo/",
-    getAnuncioByProfesor: urlApi + "getanuncioByProfesor/", // Done
+    getAnuncioByProfesor: urlApi + "getanunciosByProfesor", // Done
 
     getCalificaciones: urlApi + "getcalificaciones/",
     createCalificacion: urlApi + "createcalificacion/",

@@ -8,16 +8,16 @@ class ListCursos extends Component {
     return (
       
            <div className='listado'>
-                <p>Categoria: <span>{this.props.curso.categoria}</span></p>
-                <p>Frecuencia: <span>{this.props.curso.frecuencia} Veces por semana</span> </p>
-                <p>Duracion: <span>{this.props.curso.duracion}  Semanas</span></p>
-                <p>Precio: <span>${this.props.curso.precio}</span> </p>
-                <p>Estado: <span className={this.props.curso.estado}>{this.props.curso.estado}</span></p>
+                <p>Categoria: <span>{this.props.curso.Categoria}</span></p>
+                <p>Frecuencia: <span>{this.props.curso.FrecuenciaSemanal} Veces por semana</span> </p>
+                <p>Duracion: <span>{this.props.curso.cantidadSemanas}  Semanas</span></p>
+                <p>Precio: <span>${this.props.curso.Precio}</span> </p>
+                <p>Estado: <span className={this.props.curso.Estado}>{this.props.curso.Estado}</span></p>
                 <div className='listado-acciones'>
                     <div onClick={() => this.props.modificar_anuncios(this.props.curso)}><Boton text="Editar"/></div>
-                    <div onClick={() => this.props.eliminarCurso(this.props.curso.id)}><Boton text="Eliminar" estilo={"boton-rojo"}/></div>
-                    <div onClick={() => this.props.togglePublicado(this.props.curso.id)}>
-                      {this.props.curso.estado === "publicado"?<Boton text="Despublicar" estilo={"boton-rojo-claro"}/>:<Boton text="Publicar"/>}
+                    <div onClick={() => this.props.eliminarCurso(this.props.curso.CursoID)}><Boton text="Eliminar" estilo={"boton-rojo"}/></div>
+                    <div onClick={() => this.props.togglePublicado(this.props.curso.CursoID)}>
+                      {this.props.curso.Estado === "PUBLICADO"?<Boton text="Despublicar" estilo={"boton-rojo-claro"}/>:<Boton text="Publicar"/>}
                     </div>
                     
                 </div>

@@ -6,12 +6,14 @@ import ListCursos from '../../../Components/ListCursos/ListCursos';
 import CrearAnuncio from '../../CrearAnuncio/CrearAnuncio';
 import ModificarAnuncios from '../../ModificarAnuncios/ModificarAnuncios';
 
+import {getMisCursos, EliminarAnuncio} from '../../../Controller/perfil.controller';
+
 
 class PerfilView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        cursos: cursosData.cursos,
+        cursos: [],
         showing: "cursos",
         alumnos:[{nombre:"Alberto", telefono: "1234567890", mail : "uZx2r@example.com", id:1, estado: "SOLICITADO", curso: "Musica"},{nombre:"Juan", telefono: "1234563220", mail : "uZx2eeer@example.com", id:2, estado: "SOLICITADO", curso: "Musica"}],
         comentarios:[{"id_comentario":1,"nombre": "Carla", "comentario": "Divertida la clase", "calificacion": 4.5}, {"id_comentario":2,"nombre": "Juana", "comentario": "No me gusto", "calificacion": 0}]
@@ -92,22 +94,28 @@ class PerfilView extends Component {
     this.setState({ cursos: cursosActualizados });
   };
 
-  eliminarCurso = id => {
-    console.log("asd")
-    const cursosActualizados = this.state.cursos.filter(curso => curso.id !== id);
-    this.setState({ cursos: cursosActualizados });
+  eliminarCurso = async (id) => {
+    
+    //const cursosActualizados = this.state.cursos.filter(curso => curso.id !== id);
+    //this.setState({ cursos: cursosActualizados });
+    console.log("id curso", id)
+    let response = await EliminarAnuncio(id)
+    if (response.rdo === 0){
+        this.obtenerCursosMios();
+    }
+
+
+
     
   };
 
-  obtenerCursosMios = () => {
-    const cursosMios = this.state.cursos.filter(curso => curso.mio === true);
-    return cursosMios.map(curso => (
-      <div key={curso.id}>
-        <ListCursos curso={curso} eliminarCurso={this.eliminarCurso} togglePublicado={this.togglePublicado} modificar_anuncios = {this.modificar_anuncios}/>
-        
-        
-      </div>
-    ));
+  obtenerCursosMios = async () => {
+    //const cursosMios = this.state.cursos.filter(curso => curso.mio === true);
+    // Obtengo los cursos
+    let cursosMios = await getMisCursos()
+    this.setState ({cursos: cursosMios.message})
+    console.log("Asd@,",cursosMios)
+    
   };
 
   cambiarShowing = (showing) => {
@@ -143,14 +151,24 @@ class PerfilView extends Component {
       this.setState({ alumnos: alumnosActualizados });
   }
   
+  componentDidMount() {
+    this.obtenerCursosMios()
+  }
+
 
   render() {
     const listarCursos = (
       <div className='perfil-div'>
           <h2>Tus Cursos</h2>
           <div className='listado-mis-cursos'>
-          <div className='boton-opcion-profesor-crear'onClick = {this.create_anuncios} ><Boton text = "Crear curso nuevo"/></div>
-          {this.obtenerCursosMios()}
+          {/*<div className='boton-opcion-profesor-crear'onClick = {this.create_anuncios} ><Boton text = "Crear curso nuevo"/></div>*/}
+          {this.state.cursos.map(curso => (
+            <div key={curso.cursoID}>
+              {console.log("Asd@2222,",curso)}
+              <ListCursos curso={curso} eliminarCurso={this.eliminarCurso} togglePublicado={this.togglePublicado} modificar_anuncios = {this.modificar_anuncios}/>
+        
+            </div>
+          ))}
           </div>
       </div>
     );
