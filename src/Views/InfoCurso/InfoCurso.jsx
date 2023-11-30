@@ -183,7 +183,7 @@ class InfoCurso extends Component {
             <h2 className='text-left'>Informacion</h2>
             <div className='info-curso'>
               <div>
-                  <h5>Profesor: <span>{this.props.curso.profesor}</span>  ({this.props.curso.Calificacion}/5 ⭐)</h5>
+                  <h5>Profesor: <span>{this.props.curso.profesor}</span>  ({this.props.curso.Promedio}/5 ⭐)</h5>
                   <h5>Frecuencia: <span>{this.props.curso.FrecuenciaSemanal} Veces por semana</span></h5>
               </div>
               <div>
