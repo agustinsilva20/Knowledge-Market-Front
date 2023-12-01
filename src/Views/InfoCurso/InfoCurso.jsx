@@ -20,7 +20,8 @@ class InfoCurso extends Component {
         telefonoInput:"",
         horarioInput:"",
         contrado: false,
-        comentarioEnviado: false
+        comentarioEnviado: false,
+        comentario2Input:""
         
 
     };
@@ -64,7 +65,7 @@ class InfoCurso extends Component {
           const nombre = this.state.nombreInput;
           const telefono = this.state.telefonoInput;
           const horario = this.state.horarioInput;
-          const mensaje = this.state.comentarioInput;
+          const mensaje = this.state.comentario2Input;
           const telefonoRegex = /^\d{8,}$/;
         
           if (nombre === "") {
@@ -114,6 +115,9 @@ class InfoCurso extends Component {
   comentario_handleChange = (event) => {
     this.setState({ comentarioInput: event.target.value });
   };
+  comentario2_handleChange = (event) => {
+    this.setState({ comentario2Input: event.target.value });
+  };
   telefono_handleChange = (event) => {
     this.setState({ telefonoInput: event.target.value });
   };
@@ -162,7 +166,7 @@ class InfoCurso extends Component {
         <Input value={this.state.nombreInput} onChange={this.nombre_handleChange} placeholder="Nombre" type="text"/>
         <Input value={this.state.telefonoInput} onChange={this.telefono_handleChange} placeholder="Telefono" type="text"/>
         <Input value={this.state.horarioInput} onChange={this.horario_handleChange} placeholder="Horario" type="text"/>
-        <Input value={this.state.comentarioInput} onChange={this.comentario_handleChange} placeholder="Mensaje" type="text"/>
+        <Input value={this.state.comentario2Input} onChange={this.comentario2_handleChange} placeholder="Mensaje" type="text"/>
         <p className='error'>{this.state.error}</p>
         <div className='boton-enviar-comentario' onClick={()=> this.contratar()}><Boton text= "Contratar"></Boton></div>
         {this.state.contrado?<p>El profesor recibio tu solicitud. Se comunicara proximamente</p>:null}
