@@ -87,7 +87,13 @@ class ModificarAnuncios extends Component {
     const categoria = [
       { value: 'VACIO', label: 'Selecciona categoria' },
       { value: 'MUSICA', label: 'Musica' },
-      { value: 'MATEMATICA', label: 'Matematica' }
+      { value: 'MATEMATICA', label: 'Matematica' },
+      { value: 'HISTORIA', label: 'Historia' },
+      { value: 'PROGRAMACION', label: 'Programacion' },
+      { value: 'INGLES', label: 'Ingles' },
+      { value: 'FISICA', label: 'Fisica' },
+      { value: 'QUIMICA', label: 'Quimica' },
+      { value: 'BIOLOGIA', label: 'Biologia' },
     ];
 
     const tipos = [
