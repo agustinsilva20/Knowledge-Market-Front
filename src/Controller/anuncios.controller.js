@@ -45,13 +45,15 @@ export const crearAnuncio = async function(dto){
     let url = urlWebServices.crearAnuncio;
 
     // Armar la peticion
-    const formData = new URLSearchParams();
+    const formData = new FormData();
     formData.append("categoria", dto.categoria);
     formData.append("frecuencia", dto.frecuencia)
     formData.append("veces", dto.veces)
     formData.append("modalidad", dto.modalidad)
     formData.append("descripcion", dto.descripcion)
     formData.append("precio", dto.precio)
+    formData.append("imagen", dto.imagen)
+    console.log("la imagn a envuar", dto.imagen)
 
 
     // Envio la peticion
@@ -60,8 +62,8 @@ export const crearAnuncio = async function(dto){
             method: "POST",
             mode: "cors",
             headers: {
-                "Accept": "application/x-www-form-urlencoded",
-                "Content-Type": "application/x-www-form-urlencoded",
+                //"Accept": "application/x-www-form-urlencoded",
+                //"Content-Type": "multipart/form-data",
                 "Origin": "http://localhost:3000",
                 "x-access-token": localStorage.getItem('x')
             },

@@ -22,11 +22,14 @@ class CrearAnuncio extends Component {
       descripcionInput: "",
       comentarios:[],
       error:"",
-      exito:""
+      exito:"",
+      imagen: null
 
     };
   }
-
+  setImagen = (state) => {
+    this.setState({ imagen: state });
+  }
   categoriaInput_handleChange = (event) => {
     this.setState({ categoriaInput: event.target.value });
   };
@@ -61,8 +64,10 @@ class CrearAnuncio extends Component {
         veces: this.state.duracionInput,
         modalidad: this.state.tipoInput,
         descripcion: this.state.descripcionInput,
-        precio: this.state.precioInput
+        precio: this.state.precioInput,
+        imagen: this.state.imagen
       }
+
       console.log("el dto", dto)
       let response = await crearAnuncio(dto)
       if (response.rdo === 1)
@@ -80,6 +85,18 @@ class CrearAnuncio extends Component {
     }
     
   }
+
+  manejarCambioImagen = (event) => {
+    // Acceder al archivo seleccionado
+    const archivo = event.target.files[0];
+
+    // Realizar las operaciones que necesites con el archivo
+    // Por ejemplo, puedes mostrar una vista previa de la imagen
+    // o subirla a un servidor.
+
+    // Actualizar el estado con la imagen seleccionada
+    this.setImagen(archivo);
+  };
   
   render() {
     const categoria = [
@@ -105,7 +122,7 @@ class CrearAnuncio extends Component {
     return (
       <div className="">
         <h2>Crear Anuncio</h2>
-        <form action="" className='centrar form-login'>
+        <form action="" className='centrar form-login' encType="multipart/form-data">
              <p>Categoria</p>
              <Dropdown opciones={categoria} handleChange={this.categoriaInput_handleChange} />
              <p>Veces por semana</p>
@@ -118,6 +135,7 @@ class CrearAnuncio extends Component {
             <Input value={this.state.descripcionInput} onChange={this.descripcionInput_handleChange} placeholder="Descripcion" type="text"/>
             <p>Precio del anuncio</p>
             <Input value={this.state.precioInput} onChange={this.precioInput_handleChange} placeholder="Precio" type="text"/>
+            <input type="file" id="imagen" name="imagen" accept="image/*" onChange={this.manejarCambioImagen}/>
             <p className='Error-text'>{this.state.error}</p>
             <p className='Exito-text'>{this.state.exito}</p>
             
