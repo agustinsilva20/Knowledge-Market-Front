@@ -76,8 +76,8 @@ class CrearAnuncio extends Component {
           }
           else{
             //this.props.agregarCurso(this.state);
-            this.setState({exito:"Curso caragado con exito"})
-            this.props.fetch_cursos();
+            //this.setState({exito:"Curso caragado con exito"})
+            this.setState({ exito: "Curso cargado con éxito" }, function () {this.props.fetch_cursos()});
           }
 
 
