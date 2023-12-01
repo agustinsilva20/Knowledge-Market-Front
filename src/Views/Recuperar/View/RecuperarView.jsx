@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Boton from '../../../Components/Boton/Boton';
 import Input from '../../../Components/Input/Input';
 
+import {recuperar, recuperarDos} from '../../../Controller/login.controller';
+
 class RecuperarView extends Component {
     
     constructor(props) {
@@ -11,7 +13,8 @@ class RecuperarView extends Component {
           correoInput: '',
           pinInput: '',
           showing:"mail",
-          error:""
+          error:"",
+          sendCorreo:''
         };
       }
     
@@ -22,25 +25,48 @@ class RecuperarView extends Component {
         this.setState({ pinInput: event.target.value });
       };
 
-      validar_correo = () => {
+      validar_correo = async () => {
           const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (regexCorreo.test(this.state.correoInput) == false){
             this.setState({ error: "Error: El correo ingresado no es valido." })
           }
           else{
-            this.setState({ error: "" })
-            this.setState({ showing: "pin" })
+            //this.setState({ error: "" })
+            let answer = await recuperar(this.state.correoInput)
+            
+            if (answer.rdo == 0){
+              this.setState({ error: "" })
+              this.setState({ sendCorreo: this.state.correoInput })
+              this.setState({ showing: "pin" })
+            }
+            else{
+              this.setState({ error: answer.message })
+            }
+            
           }
       };
 
-      validar_pin = () => {
+      validar_pin = async () => {
        
         if ((this.state.pinInput) == ""){
           this.setState({ error: "Error: El PIN no puede estar vacio" })
         }
         else{
           this.setState({ error: "" })
-          window.location.replace("/anuncios")
+          let dto = {
+            correo: this.state.sendCorreo,
+            codigo: this.state.pinInput,
+            password: "3"
+          }
+          let answer = await recuperarDos(dto)
+          if (answer.rdo == 0){
+            this.setState({ error: "" })
+            window.location.replace("/anuncios")
+          }
+          else{
+            this.setState({ error: answer.message })
+          }
+          
         }
     };
 

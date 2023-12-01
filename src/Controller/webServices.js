@@ -3,6 +3,8 @@ const urlApi = "http://localhost:8080/api/";
 const urlWebServices = {
     login : urlApi + "login", // Done 
     register : urlApi + "crearcuenta", // Done
+    recuperar:urlApi + "recuperar",
+    recuperarDos:urlApi + "recuperarDos",
 
     crearAnuncio: urlApi + "crearanuncio", //Done
     eliminarAnuncio: urlApi + "eliminaranuncio", // Done
