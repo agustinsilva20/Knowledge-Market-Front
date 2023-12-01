@@ -8,7 +8,8 @@ class Card extends Component {
   render() {
     return (
       <div className='card'>
-        <img src={"./src/" + this.props.curso.categoria + ".jpg"} alt="src" />
+        {/*<img src={"./src/" + this.props.curso.categoria + ".jpg"} alt="src" />*/}
+          <img src={this.props.curso.Imagen} alt="src" />
           <br /><br />
           <h4>Clase de <span>{this.props.curso.Categoria}</span> </h4>
           <div className='card-info'>
