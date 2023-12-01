@@ -14,7 +14,8 @@ class RecuperarView extends Component {
           pinInput: '',
           showing:"mail",
           error:"",
-          sendCorreo:''
+          sendCorreo:'',
+          passwordInput:''
         };
       }
     
@@ -23,6 +24,9 @@ class RecuperarView extends Component {
       };
       pin_handleChange = (event) => {
         this.setState({ pinInput: event.target.value });
+      };
+      password_handleChange = (event) => {
+        this.setState({ passwordInput: event.target.value });
       };
 
       validar_correo = async () => {
@@ -56,7 +60,7 @@ class RecuperarView extends Component {
           let dto = {
             correo: this.state.sendCorreo,
             codigo: this.state.pinInput,
-            password: "3"
+            password: this.state.passwordInput
           }
           let answer = await recuperarDos(dto)
           if (answer.rdo == 0){
@@ -93,6 +97,7 @@ class RecuperarView extends Component {
             <form action="" className='centrar form-login'>
             <p>Ingrese el PIN enviado a <span>{this.state.correoInput}</span></p>
             <Input value={this.state.userInput} onChange={this.pin_handleChange} placeholder="PIN" type="text"/>
+            <Input value={this.state.passwordInput} onChange={this.password_handleChange} placeholder="Password" type="password"/>
             </form>
 
           <div className='centrar btn-login' onClick={this.validar_pin}>
