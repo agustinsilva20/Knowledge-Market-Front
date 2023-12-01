@@ -91,7 +91,8 @@ class InstitucionalView extends Component {
     }
     else{
       cursosFiltrados = this.props.cursos.filter((curso) => {
-        return curso.categoria.toUpperCase() == categoria.toUpperCase()
+        return curso.Categoria.toUpperCase() == categoria.toUpperCase()
+        //return curso.categoria.toUpperCase() == categoria.toUpperCase()
       })
     }
 
@@ -101,7 +102,8 @@ class InstitucionalView extends Component {
    }
    else{
      cursosFiltrados = cursosFiltrados.filter((curso) => {
-       return curso.tipo.toUpperCase() == tipos.toUpperCase()
+      return curso.Modalidad.toUpperCase() == tipos.toUpperCase()
+       //return curso.tipo.toUpperCase() == tipos.toUpperCase()
      })
    }
 
@@ -111,7 +113,8 @@ class InstitucionalView extends Component {
     }
     else{
       cursosFiltrados = cursosFiltrados.filter((curso) => {
-        return curso.frecuencia == frencuencia
+        return curso.FrecuenciaSemanal == frencuencia
+        //return curso.frecuencia == frencuencia
       })
     }
 
@@ -121,12 +124,14 @@ class InstitucionalView extends Component {
     }
     else if (calificacion == -1) {
       cursosFiltrados = cursosFiltrados.filter((curso) => {
-          return curso.calificacion <= 1
+          //return curso.calificacion <= 1
+          return curso.Promedio <= 1
       })
     }
   else{
     cursosFiltrados = cursosFiltrados.filter((curso) => {
-      return curso.calificacion >= calificacion
+      //return curso.calificacion >= calificacion
+      return curso.Promedio >= calificacion
     })
   }
 
