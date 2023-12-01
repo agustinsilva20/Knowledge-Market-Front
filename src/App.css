@@ -4,7 +4,7 @@
     --gris: #BDC3C7;
 
     --text-alternative:'Roboto', sans-serif;
-    --text-primary: 'Rokkitt', serif;
+    --text-primary: 'Lato', sans-serif;
 
 
 
@@ -158,6 +158,10 @@ p{
     }
     .Comentario2{
         padding-bottom: 20px !important;
+    }
+
+    .spacebtw{
+        flex-direction: column;
     }
 
     

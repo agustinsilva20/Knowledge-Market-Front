@@ -11,36 +11,37 @@ class InstitucionalView extends Component {
   }
   render() {
 
-    const opciones = [
-      { value: 'ALL', label: 'Todas las categorias' },
-      { value: 'MUSICA', label: 'Musica' },
-      { value: 'MATEMATICA', label: 'Matematica' }
-    ];
-
-    
-
-
 
     return (
       <div className='InstitucionalView'>
         <h2>¿Necesitas clases particulares?</h2>
         <h3>Te ofrecemos los mejores profesores</h3>
+        <p className='quiensomos'>Knowledge Market es la mejor plataforma gratuita para encontrar un profesor particular que te ayude a estudiar y preparar examenes. Nuestros docentes son los mejores en todo el mundo  </p>
         <div className='space'></div>
         
         
-        <h4>Contrata ya mismo a tu proximo profesor</h4>
-        <div className='btn-institucional-buscar'>
-          
-        <Boton text="Buscar profesores"  handleClick = {this.buscar_cursos}/>
-        </div>
+        
         
         <div className='space'></div>
-        <h4>¿Deseas ofrecer tus servicios?</h4>
-        <div className='btn-institucional-registro'>
+        
+        <div className='spacebtw'>
+              <div className='comenzar'>
+                      <h4>¿Que esperas para <span>Comenzar</span>? </h4>
+                <br />
+                <div className='btn-institucional-buscar'>
+                  
+                <Boton text="Buscar profesores"  handleClick = {this.buscar_cursos}/>
+                </div>
+              </div>
+              <div className='notengocuenta'>
+              <h4>¿Deseas ofrecer tus servicios?</h4>
+              <div className='btn-institucional-registro'>
           <a href="/registro"><Boton text="Registrate"/></a>
         </div>
         <h5>¿Ya estas registrado? <a href="/login"><span>Ingresa a tu cuenta</span></a></h5>
-        <br />
+              </div>
+        </div>
+       
         
 
 
