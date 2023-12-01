@@ -157,7 +157,13 @@ class InstitucionalView extends Component {
   }
 
   create_anuncios = () => {
-    this.props.setModal(true,<CrearAnuncio agregarCurso={this.props.agregarCurso} fetch_cursos={this.fetch_cursos}/>)
+    if (localStorage.getItem("x")) {
+      this.props.setModal(true,<CrearAnuncio agregarCurso={this.props.agregarCurso} fetch_cursos={this.fetch_cursos}/>)
+    }
+    else{
+      window.location.replace("/login")
+    }
+    
   }
 
   render() {
